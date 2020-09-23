@@ -20,13 +20,11 @@ init python:
             else:
                 return False
 
-        if renpy.variant("mobile"):
-            modConfigPath = None
-        else:
             modConfigPath = os.path.join(os.getcwd(), "game", "oscarAdditions", "modConfig.txt")
 
         def updateChecker():
-            if renpy.variant("mobile"):
+            try:
+                if not isUpToDate(modConfigPath, "https://raw.githubusercontent.com/KiloOscarSix/Casual-Desires-Mod/master/game/oscarAdditions/modConfig.txt"):
+                    return True
+            except:
                 return False
-            if not isUpToDate(modConfigPath, "https://raw.githubusercontent.com/KiloOscarSix/Banking-on-Bella-OscarSix-s-Mod/master/game/oscarAdditions/modConfig.txt"):
-                return True
