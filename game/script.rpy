@@ -93,10 +93,14 @@ define manr = Character("Man On Right")
 
 ############# STATS #####################################################
 screen control():
-    frame:
-        xalign 0.98
-        yalign 0.98
-        textbutton "Stats" action If(renpy.get_screen("stat_box"), Hide("stat_box"), Show("stat_box"))
+    vbox:
+        align (0.98, 0.95)
+        spacing 5
+
+        frame:
+            textbutton "Stats" action If(renpy.get_screen("stat_box"), Hide("stat_box"), Show("stat_box"))
+        frame:
+            textbutton "Cheats" action [Show("cheatMenu"), SetVariable("quick_menu", False)]
 
 screen stat_box():
     frame:

@@ -39,7 +39,7 @@ init python:
 label galleryNameChange:
     default persistent.povname = ""
     default persistent.frname = ""
-    default persistant.vioname = ""
+    default persistent.vioname = ""
     if persistent.povname == "":
         show heroine portrait intro
         with dissolve
