@@ -58,6 +58,14 @@ default c3nopool = False
 default c4viostranger = False
 default c4viosharing = False
 default c4kissenjoy = False
+default c5outside = False
+default c5pool = False
+default c5touch = False
+default c5leslocker = False
+default c5handjob = False
+default c5viomff = False
+default c5viommf = False
+default c5pic = False
 
 ############# CURSOR ######################################################
 define config.mouse = {"default":[ ("images/misc/cursor.png", 1, 1) ] }
@@ -74,22 +82,27 @@ default frname = "Haruka"
 define luna = Character("Luna", color="#FF5C33")
 define c = Character("Connor")
 define j = Character("Josh")
-define bo = Character("Boys")
-define boy = Character("Boy")
-define ev = Character("Everyone")
 define ni = Character("Nick")
 define ja = Character("Jason")
 define luc = Character("Lucas")
+define sop = Character("Sophia")
+define nol = Character("Nolan")
+define rdad = Character("[pov]'s Dad")
+define rmom = Character("[pov]'s Mom")
+define lmom = Character("Luna's Mom")
+define oli = Character ("Oliver")
+define bo = Character("Boys")
+define boy = Character("Boy")
 define st = Character("Stranger")
 define girl = Character("Girl")
 define man = Character("Man")
 define men = Character("Men")
 define wom = Character("Woman")
 define voi = Character("Voice")
-define rdad = Character("[pov]'s Dad")
-define rmom = Character("[pov]'s Mom")
+define ev = Character("Everyone")
 define manl = Character("Man On Left")
 define manr = Character("Man On Right")
+define jawi = Character("Jason's Wife")
 
 ############# STATS #####################################################
 screen control():
@@ -111,7 +124,8 @@ screen stat_box():
             if vir == "No":
                 text "First partner(s): [fp]"
             text "Anal virgin: [anvi]"
-            text "Sex partners: [sexp]"
+            if vir == "No":
+                text "Sex partners: [sexp]"
             if vir == "No":
                 text "Times penetrated: [scount]"
             if hjcount >= 1:
@@ -166,6 +180,7 @@ label start:
     show intro bg 1
     with dissolve
     m "Thank you for showing interest in {b}Casual Desires{/b}. I hope you will enjoy it as much as I've enjoyed developing it!"
+    m "If you would like to track [pov]'s statistics over the course of the game, please feel free to click the 'Stats' button on the bottom right. It is continually updated based on your choices."
     if persistent.pskip:
         m "I notice you've completed the Prologue before. Would you like to skip straight to Chapter 1? \n {i}{size=-5}(Note: The first player choice will default to teasing the boys.){/size}{/i}"
         menu:
@@ -435,10 +450,6 @@ label prologue:
     "......"
     $ perv +=1
 
-    m "{size=-3}Congratulations! [pov] has reached: {b}Perversion, Rank 1{/b}.{/size}"
-    m "{size=-3}She is now capable of:{/size}"
-    m "{size=-3}— Light exhibitionism (underwear){p}— Teasing{/size}"
-    m "{size=-3}Nothing wrong with enjoying a bit of attention, {i}right{/i}?{/size}"
     "......"
     "{b}Prologue: Complete{/b}"
 
@@ -714,10 +725,15 @@ label chapter1:
     with fadeholdlong
     pov "It's been a few days since my interview."
     pov "Since then, I've mostly just been waiting, and playing more games and stuff to pass the time."
-    pov "This morning I finally got an email."
-    pov "It said to come in the day after tomorrow, for my first shift."
+    pov "This morning, I finally got a message."
+    window hide
+    show c1-1 phone with dissolvelong
+    with Pause(4.5)
+    window show
+    pov "A couple days from now, huh..."
     pov "Sadly, due to the way modelling works, I won't exactly be able to work every day..."
-    pov "Once or twice a week seems to be the pace for now, according to my boss."
+    hide c1-1 phone with dissolvelong
+    pov "Once or twice a week seems to be the pace for now, according to the email he sent me earlier."
     show c1 home 1-2
     with dissolve
     pov "But the pay is good! And one day of work is still better than zero!"
@@ -735,7 +751,7 @@ label chapter1:
     pov "It's pretty good, I guess!"
     show c1 boys 2
     with dissolve
-    pov "{i}(...... they're busy as usual.){/i}"
+    pov "{i}(...... They're busy as usual.){/i}"
     pov "{i}(I'm not really in the mood for tons of anime today, though.){/i}"
     pov "{i}(We've already been watching for a couple hours now.){/i}"
     pov "{i}(And I prefer romance shows over action, anyway...){/i}"
@@ -1134,7 +1150,7 @@ label galleryScene1:
     show c1 home 2-3
     with dissolve
     pov "......."
-    pov "...... well, it's just an idea."
+    pov "...... Well, it's just an idea."
     pov "Just an idea..."
     stop music fadeout 2.0
     "......."
@@ -1152,9 +1168,6 @@ label galleryScene1:
     hide black
     show intro bg 1
     with wiperight
-    m "{size=-3}Congratulations! [pov] has reached: {b}Perversion, Level 2{/b}.{/size}"
-    m "{size=-3}She is now capable of:{/size}"
-    m "{size=-3}— Moderate exhibitionism (topless nudity){p}— Touching{/size}"
     "......"
     "{b}Chapter 1: Complete{/b}"
 
@@ -1530,7 +1543,7 @@ label c2hottub:
     play music "<from 1.7>audio/absurd.mp3" fadein 0.5 loop
     show c2 pool 1
     with fadeholdlong
-    "A few days later."
+    "A couple days later."
     pov "Ahh..."
     pov "Soaking in the pool might just be my favorite thing about summer..."
     pov "Or at least one of them, anyway."
@@ -2273,9 +2286,6 @@ label galleryScene4:
             show intro bg 1
     $ renpy.end_replay()
     stop music fadeout 2.0
-    m "{size=-3}Congratulations! [pov] has reached: {b}Perversion, Level 3{/b}.{/size}"
-    m "{size=-3}She is now capable of:{/size}"
-    m "{size=-3}— Heavy exhibitionism (full nudity){p}— Light foreplay{/size}"
     "......"
     "{b}Chapter 2: Complete{/b}"
     $ perv +=1
@@ -3616,7 +3626,14 @@ label galleryScene4:
     play sound "audio/effects/phone1.wav"
     "{i}*beep*{/i}"
     ni "Hmm?"
+    window hide
+    show c3-1 phone with dissolvelong
+    with Pause(3.5)
+    window show
+    vio "{i}([pov], huh...){/i}"
+    vio "{i}(What's with these emojis, anyway...?){/i}"
     vio "Oh, it's just a text. No big deal. I'll look at it later."
+    hide c3-1 phone with dissolvelong
     show c3 viodate 2
     with dissolve
     vio "So, anyway, your university convocation... how did that go?"
@@ -3705,7 +3722,7 @@ label galleryScene4:
     vio "......"
 
     menu:
-        "'I guess I'm pretty open-minded.' [gr]\[Vioc\]":
+        "'I guess I'm pretty open-minded.' [gr]\[VioCorruption\]":
             show c3 viodate 5
             with dissolve
             vio "Well... I can't say I'd be willing to do {i}absolutely{/i} anything."
@@ -4194,7 +4211,7 @@ label galleryScene4:
     pov "There's a possibility that it could be a girl instead, too."
     pov "......"
     menu:
-        "Order pizza now. [gr]\[Sexe +1\]":
+        "Order pizza now. [gr]\[SexExperiance +1\]":
             pov "If there's a chance that boy might show up again... I might as well give it a try now."
             pov "It's a shot in the dark, but hey, why not?"
             pov "I guess I'll get dressed once I'm done ordering on here."
@@ -4273,7 +4290,7 @@ label galleryScene4:
             pov "{size=-5}{i}(I sure hope so.){/i}{/size}"
             "......"
             $sexe +=1
-        "Wait a little while first. [gr]\[Les +1\] \[Sexe +1\]":
+        "Wait a little while first. [gr]\[Les +1\] \[SexExperiance +1\]":
             pov "Nah... I'd rather have someone different come, if possible."
             pov "Not like waiting will guarantee anything, since I obviously don't know their shifts, but..."
             pov "It's at least worth a try."
@@ -4727,6 +4744,19 @@ label galleryScene4:
             vio "And not on my face, since we're in public..."
             vio "Put me down. I'll swallow it for you."
             "......"
+            show c4 vtoi 8
+            with dissolvelong
+            vio "Ah...... {i}*gargle*{/i}"
+            vio "There's so much..."
+            vio "I hope I can swallow all this."
+            "......"
+            show c4 vtoi 9
+            with dissolvelong
+            vio "There you go..."
+            vio "Are you happy now?"
+            ni "Shit... yeah, that was amazing."
+            ni "And you swallowing it like that, with no complaints..."
+            ni "It was hot as hell."
             show c4 vrave 9
             with fadeholdlong
             ni "Wow..."
@@ -4811,7 +4841,7 @@ label galleryScene4:
     vio "......"
     vio "{i}(I feel like how I respond to him here, will have a big impact, somehow or another...){/i}"
     menu:
-        "[vio] considers the idea. [gr]\[VioSharing\]":
+        "[vio] considers the idea. [gr]\[ViolotSharing\]":
             $c4viosharing = True
             vio "Well..."
             vio "I don't know how that would be in reality, but..."
@@ -4917,7 +4947,7 @@ label galleryScene4:
     with dissolve
     pov "What should I do, I wonder..."
     menu:
-        "Go outside. [gr]\[Sexe +1\] \[Exh +1\]":
+        "Go outside. [gr]\[SexExperiance +1\] \[Exh +1\]":
             pov "I could just stay here and touch myself, but..."
             pov "Even if that clears the horniness, it might not clear the thoughts in my head."
             pov "I should try something a little bit different."
@@ -5049,14 +5079,39 @@ label galleryScene4:
     "The next day."
     fr "Hmm...?"
     fr "Oh, it's a message from [pov]."
+    play sound "audio/effects/notif1.mp3"
+    window hide
+    show c4-1 fbook with dissolvelong
+    with Pause (1.5)
+    window show
     fr "We were going to hang out today, but haven't decided on a time yet, so that makes sense."
+    hide c4-1 fbook with dissolve
     show c4 hroom 2
     with dissolve
-    fr "It's the day before her birthday, and she wants to hang out, just the two of us, before her birthday party tomorrow."
+    fr "It's the day before her birthday, and she wants to hang out, just the two of us, before her party tomorrow."
+    window hide
+    play sound "audio/effects/notif1.mp3"
+    show c4-2 fbook with dissolve
+    with Pause (3.0)
+    window show
     fr "So, with that in mind, we should probably hang out for longer than usual."
+    hide c4-2 fbook with dissolve
     fr "I don't have any plans for a couple days, so I could stay at [pov]'s place for the night, if she's fine with that."
+    window hide
+    play sound "audio/effects/notif1.mp3"
+    show c4-3 fbook with dissolve
+    with Pause (1.5)
+    window show
     fr "There's also a nice hot spring I've wanted to go to for a while now..."
+    window hide
+    play sound "audio/effects/notif1.mp3"
+    show c4-4 fbook
+    with Pause (1.5)
+    window show
     fr "I'll try bringing her there."
+    hide c4-3 fbook
+    hide c4-4 fbook with dissolve
+    with dissolve
     show c4 hroom 3
     with dissolve
     fr "So, with my response out of the way..."
@@ -5384,9 +5439,6 @@ label galleryScene4:
     hide c4 end 4
     with wiperight
     show intro bg 1
-    m "{size=-3}Congratulations! [pov] has reached: {b}Perversion, Level 4{/b}.{/size}"
-    m "{size=-3}She is now capable of:{/size}"
-    m "{size=-3}— Girl-on-girl action{p}— Handjobs{p}— Moderate foreplay{/size}"
     "......"
     "{b}Chapter 4: Complete{/b}"
     $ perv +=1
@@ -5395,9 +5447,2128 @@ label galleryScene4:
     ####################### CHAPTER 5 ##########################################
     $ chaptercount +=1
 
+    play music "audio/chill2.mp3" fadein 0.5 loop
+    show c5 title
+    with fadeholdlong
+    vio "Are you sure about this?"
+    vio "I know I consented to meeting with them, but now that we're actually doing it..."
+    vio "I'm a bit nervous, after all."
+    ni "Look, it'll be fine! Don't worry."
+    show c5 viobar 1
+    with dissolvelong
+    ni "We're just going there for a chat. Nothing's decided yet."
+    vio "......"
+    show c5 viobar 2
+    with dissolve
+    vio "That's true... but I really doubt they're going to be fine with just talking, after coming all the way out here."
+    ni "Well, I'm sure they wouldn't mind chatting with us. We have... similar interests."
+    vio "Maybe {i}you{/i} do, but I still don't know what to think..."
+    vio "I'm not some slut, so I haven't done anything like this before."
+    ni "I haven't either, so it'll be a new experience for both of us."
+    ni "Let's just have a beer and see how things go."
+    stop music fadeout 2.0
+    vio "{i}*sigh*{/i}... alright."
+    "......"
+
+    show black
+    with dissolvelong
+    "A few days earlier..."
+    label galleryScene15:
+    play music "audio/swing.mp3" fadein 2.0 loop
+    hide black
+    show c5 photo 1
+    with dissolvelong
+    pov "......"
+    pov "This is an... interesting choice of outfit."
+    pov "I did wear something similar when I was in school, so it's not out of place for me personally."
+    pov "I'm just not sure why we need pictures of this for a magazine."
+    pov "Well... there's all kinds of readers out there, I guess."
+    pov "Isn't this skirt a bit short, though...?"
+    if exh>=2:
+        pov "I guess this provides a bit of a thrill, so I can't complain..."
+    show c5 photo 2
+    with dissolve
+    pov "What do you think?"
+    pov "I'm all ready for the scene, I think, whenever you are."
+    ja "One moment..."
+    ja "Okay, the lighting should be ready to go now."
+    show c5 photo 3
+    with dissolve
+    ja "Well now..."
+    ja "This looks quite... tantalizing on you, I have to say."
+    pov "{i}*giggles*{/i} Thank you."
+    pov "By the way..."
+    pov "If you don't mind me asking, why are you so dressed up all of a sudden?"
+    show c5 photo 4
+    with dissolve
+    ja "Oh, this suit?"
+    ja "Well... it's not exactly of my own choosing."
+    ja "I have dinner scheduled with my son and ex-wife, after this."
+    ja "I have no interest in seeing {i}her{/i}, but the kid has to see both parents, at least once in a while."
+    pov "I see... I didn't know you were a dad."
+    pov "What happe— actually, never mind... it's none of my business."
+    ja "No, it's okay. We have a few minutes to spare yet."
+    stop music fadeout 2.0
+    ja "It's an awkward story, but I can give you the gist of it."
+    "......"
+    show c5 jasonfb 1
+    with fadeholdlong
+    play music "audio/chill2.mp3" fadein 0.5 loop
+    ja "{i}It was a few years ago.{/i}"
+    ja "{i}The business was a little bit smaller back then, and I had to work until late at night fairly often, to keep things running.{/i}"
+    ja "{i}There were a couple freelance models employed here, but any other help at the 'office'... if you could even call it that... was minimal at best.{/i}"
+    ja "{i}I sacrificed everything to have this business succeed.{/i}"
+    ja "{i}After losing my previous job and almost having our family fall into poverty... I couldn't risk another failure.{/i}"
+    ja "{i}And so, ever since I started this company, I couldn't be there for my wife or child as much as I should have.{/i}"
+    ja "{i}And, one night...{/i}"
+    ja "Honey, I'm home."
+    voi "Ahhh——?!"
+    show c5 jasonfb 2
+    with dissolvelong
+    ja "......"
+    ja "What the hell is this...?"
+    ja "I've been working my ass off to support us, and I come home to {i}this{/i}?"
+    show c5 jasonfb 3
+    with dissolve
+    jawi "Wait... wait... please, I can explain!"
+    ja "{i}Explain{/i}?!"
+    ja "You're riding another man's dick, and you think you can explain this away to me?!"
+    ja "How much of a goddamn fool do you think I am?"
+    ja "Get the hell off him!"
+    show c5 jasonfb 4
+    with dissolvelong
+    man "Look... I'm sorry... I ca—"
+    ja "I'm talking to my wife. Shut the hell up."
+    ja "You're fucking another man's woman, you know?"
+    ja "I'm doing my best to hold back from knocking you out, so don't you open your damn mouth again."
+    man "......"
+    jawi "I'm sorry... please..."
+    jawi "I've been lonely lately, and he's been so nice to me..."
+    ja "I don't care."
+    ja "I haven't been unfaithful to you, so what gives you the right to have an affair?"
+    show c5 jasonfb 5
+    with dissolve
+    jawi "I'm sorry... I'm so sorry..."
+    jawi "It was all a mistake."
+    jawi "I'll never do it again... please... forgive me..."
+    ja "......"
+    ja "For now, I don't want to see your face in here."
+    stop music fadeout 2.0
+    ja "Not with our son around... and not in our home... {i}my{/i} home."
+    "......"
+    play music "audio/swing.mp3" fadein 2.0 loop
+    show c5 photo 5
+    with fadeholdlong
+    ja "It's a pretty common story these days, but still... I couldn't find it in me to forgive her for that."
+    pov "I see..."
+    pov "Thank you for sharing with me. And I'm sorry to hear what happened."
+    ja "{i}*laughs*{/i} No, it's fine. I'm completely over it now."
+    ja "And I'm enjoying the bachelor life a lot more than I expected."
+    ja "Anyway, we should probably get started with the shoot now, before we start running late."
+    pov "Sure. Good point!"
+    pov "{i}(Hmm... he has a pretty dark past, it seems.){/i}"
+    pov "{i}(But I guess we all have some unpleasant memories. And I'm glad he's doing better now.){/i}"
+    pov "{i}(Time to change the mood with this shoot of ours.){/i}"
+    "......"
+    show c5 photo 6
+    with fadehold
+    "A few minutes later."
+    pov "Behind... you mean like this?"
+    ja "Yes, that's good."
+    ja "Next, can you put your hands on the screen and look backwards towards the camera?"
+    show c5 photo 7
+    with dissolve
+    pov "How's this?"
+    ja "Wow. Good, good."
+    play sound "audio/effects/camera1.mp3"
+    "{i}*snap*{/i}"
+    ja "This one is so good it could go right on the cover of a magazine."
+    pov "Haha, well, thanks for the flattery."
+    ja "Lastly... this is a bit more difficult, but I want you to do undo the buttons of your shirt, and face the camera."
+    ja "Without showing anything, of course..."
+    show c5 photo 8
+    with dissolvelong
+    pov "Hmmm... I hope this is good enough."
+    pov "Make sure the camera isn't looking anywhere funny!"
+    play sound "audio/effects/camera2.mp3"
+    "{i}*click*{/i}"
+    ja "Haha, of course not! Don't worry. This isn't a nude magazine, after all."
+    ja "We just want something suggestive to catch the reader's eye."
+    ja "And this does quite the job at that."
+    show c5 photo 9
+    with dissolve
+    pov "{i}(Crap...){/i}"
+    pov "{i}(I moved a little bit, and now my nipple is showing...){/i}"
+    pov "{i}(I was scared this would happen.){/i}"
+    ja "......"
+    show c5 photo 8
+    with dissolve
+    pov "You didn't see anything... right?"
+    ja "Err... no, of course not."
+    "......"
+    ja "Anyway, that should be good enough for today..."
+    show c5 photo 10
+    with dissolvelong
+    ja "Good work, as usual."
+    ja "I wish I could stay around and enjoy the sight a bit longer, but..."
+    ja "Well, duty calls, so we'll be settling with the minimum amount of pictures this time."
+    ja "Not that there'll be any issue selecting from what we've taken, though. You did a perfect job."
+    pov "Thank you!"
+    show c5 photo 11
+    with dissolve
+    pov "I'm sorry that you have to deal with something so troublesome tonight."
+    ja "Well, I'm happy to see my kid, so it's not all bad, I suppose."
+    ja "He's still a toddler, so he'll stay cute for a while yet."
+    ja "I have no idea how I'll deal with a teenage child when that time comes, though."
+    pov "Haha, that's true!"
+    if model_seduction>=2:
+        pov "{i}(Hmm...){/i}"
+        pov "{i}(I feel a little bit bad for him, so...){/i}"
+        show c5 photo 12
+        with pixellate
+        pov "Well, as a little treat... I'll give you a better look this time."
+        pov "I know you saw that little accident earlier."
+        ja "?!"
+        ja "...... Haha, well, you caught me..."
+        show c5 photo 13
+        with dissolve
+        pov "Not that I'd be okay with pictures, but a quick peek like this should be good enough."
+        pov "...... Right?"
+        ja "O-Of course..."
+        show c5 photo 11
+        with dissolvelong
+        pov "Anyway, I shouldn't distract you too much from your appointment tonight."
+        stop music fadeout 2.0
+        pov "I'll let you get going now."
+        ja "S-Sure. I'll see you again next week, then, [pov]."
+        "......"
+        jump c5photoafter
+    else:
+        stop music fadeout 2.0
+        pov "Well, I shouldn't hold you back any longer then."
+        ja "Sure. I'll see you again next week, [pov]."
+        "......"
+        jump c5photoafter
+
+label c5photoafter:
+    $ renpy.end_replay()
+    show c5 outside 1
+    with fadeholdlong
+    play music "audio/cloudy.mp3" fadein 0.5 loop
+    pov "Well, that's the end of today's work..."
+    pov "I wasn't expecting to hear my boss talk about his past like that, but I appreciate him opening up to me."
+    pov "And... though it wasn't really planned... he did get a little bit of a surprise from me during the photoshoot."
+    pov "I guess that makes us even... or something like that."
+    show c5 outside 2
+    with dissolve
+    pov "Now then..."
+    pov "What should I do next?"
+    pov "It's not that late yet, and it'll be light outside for a while since we're in the middle of summer."
+    pov "I guess I'll do something with my free time, before I head home."
+    pov "Hmmm..."
+    menu:
+        "Take a detour downtown. [gr]\[Downtown\]":
+            show c5 outside 1
+            with dissolve
+            pov "I don't have anything specific in mind that I want to do, so just a stroll around town sounds about right."
+            pov "Plus, with two part time jobs, I tend to just want to relax at home after work."
+            pov "Well... I'm only a few blocks away from this area of downtown that I wanted to see."
+            pov "I'll head there for now!"
+            "......"
+            $c5outside = True
+        "Go swimming at the local pool. [gr]\[Pool\]":
+            show c5 outside 1
+            with dissolve
+            pov "It {i}is{/i} summer, after all..."
+            pov "And I can work up a bit of a sweat after being in that room all afternoon, as well as outdoors in the sun like this."
+            pov "Guess it can't hurt to go for a quick dive."
+            pov "I don't want to damage my makeup, though, so I'll make sure to only get my body wet for today."
+            pov "......"
+            $c5pool = True
+    show c5 alley 1
+    with fadeholdlong
+    pov "Well, first, I need to head east before I can go anywhere."
+    pov "It makes me a bit nervous... but... I'll try taking a shortcut through this alleyway first."
+    pov "In broad daylight, and with so many people around here, it's not like I'm in any serious danger if I go down here by myself."
+    pov "At worst, there might be a beggar asking for change, or trying to sell cigarettes or something like that..."
+    show c5 alley 2
+    with dissolve
+    pov "Obviously, I'm not going to buy anything from a stranger..."
+    pov "And especially not cigarettes, as I have no interest in them."
+    pov "But... overall, the homeless here are pretty tame, for the most part."
+    pov "There's a few drug addicts, of course, but you can avoid them easily as long as you stay outside {i}that{/i} part of town."
+    show c5 alley 3
+    with dissolve
+    pov "Hmm..."
+    pov "Speaking of which..."
+    show c5 alley 4
+    with dissolve
+    pov "There's a homeless guy over here, from the looks of it."
+    pov "He doesn't look like the scary type, either."
+    pov "Call me crazy... but a woman's intuition is usually right."
+    pov "He probably lost his job recently, due to the recession I've been hearing about online."
+    show c5 alley 3
+    with dissolve
+    pov "......"
+    pov "Mom would get really mad at me for this, but..."
+    show c5 alley 5
+    with dissolve
+    pov "Hey there."
+    man "......?"
+    man "Huh...?"
+    pov "Sorry for talking to you suddenly like this, but I don't mean any trouble."
+    pov "I just thought you might appreciate a bit of help."
+    pov "I have plenty of money to spare, so I felt it would be the right thing to do, to help someone in need."
+    man "Huh?"
+    show c5 alley 6
+    with dissolve
+    pov "It's not enough to pay for everything, but it should at least be a start."
+    pov "With this, you could buy a new pair of clothes, and maybe try applying some place, if you're able to."
+    show c5 alley 7
+    with dissolve
+    man "Wait... you're not serious, {i}are{/i} you?"
+    man "That must be at least a hundred bucks. Maybe even two hundred."
+    man "I'm just a loser down on his luck... you don't need to waste your money."
+    show c5 alley 6
+    with dissolve
+    pov "No, no— it's okay! I mean it!"
+    man "......"
+    show c5 alley 7
+    with dissolve
+    man "If you're absolutely sure..."
+    man "I'll take it, and try to make the most of it."
+    man "Thank you."
+    show c5 alley 8
+    with dissolve
+    pov "No problem."
+    pov "And, hey, put it this way... if you manage to get things back together, maybe you could pay me back then? {i}*chuckles*{/i}"
+    pov "Not that I need the money back, and, well, it's almost impossible we'll be able to see each other again, but..."
+    pov "If you think of it that way, at least you shouldn't feel any guilt over taking it."
+    pov "And it should help you feel more motivated, too."
+    man "Sure... well, I'll try my best."
+    man "Thanks again."
+    show c5 alley 9
+    with dissolve
+    pov "{i}(Alright... I should probably get going now.){/i}"
+    pov "{i}(Mom would absolutely kill me if she saw me talking to a homeless person, much less giving money to them... but I'm an adult now and can make my own decisions.){/i}"
+    pov "{i}(I've never given more than a coin or two in the past, so I hope something good will at least come from this.){/i}"
+    pov "{i}(If not, well... there's a first and a last for everything.){/i}"
+    pov "{i}(I wonder if fate will have us see meet again one day?){/i}"
+    stop music fadeout 2.0
+    if c5outside:
+        pov "......"
+        pov "{i}(Time to get out of here, and head downtown.){/i}"
+        jump c5outside
+    if c5pool:
+        pov "......"
+        pov "{i}(Time to get out of here, and head to the pool.){/i}"
+        pov "{i}(It's not open all night, after all!){/i}"
+        jump c5pool
+
+    label c5outside:
+        show c5 outside 3
+        with fadeholdlong
+        play music "<from 3.5>audio/isolation.mp3" fadein 0.5 loop
+        pov "{i}(Hmm... there's some cute little stores in this area.){/i}"
+        pov "{i}(I'm not sure if there's anything I'm interested in here, personally.){/i}"
+        pov "{i}(But the same can be said for most places that aren't a mall or a cafe. I'm pretty picky when it comes to shopping.){/i}"
+        voi "Hey, can I borrow a second of your time?"
+        show c5 outside 4
+        with dissolve
+        voi "I'm running a fundraiser for a local t—"
+        pov "Sorry, I appreciate you asking me, but I'll have to pass for now."
+        voi "Ah... okay. Have a nice day, then."
+        pov "You too."
+        show c5 outside 5
+        with dissolve
+        pov "It's not like I mind contributing to fundraisers and things like that..."
+        pov "In fact, I used to to participate in a few back when I was in school."
+        pov "But I can't be giving my money to everybody who wants it, especially if it's a stranger approaching me in the streets like this."
+        pov "Plus, I already gave that homeless guy a bunch of money earlier..."
+        pov "I sure hope he puts it to good use."
+        show c5 outside 6
+        with dissolvelong
+        pov "Oh?"
+        pov "Not too often you see people hanging outside like this by themselves."
+        pov "He's a younger guy, too... maybe I'll talk to him for a minute?"
+        pov "It's not like I'm a huge rush to get home, after all."
+        show c5 outside 7
+        with dissolve
+        pov "Hello! Hope you don't mind me bothering you."
+        man "Huh? No, it's cool."
+        man "What's up?"
+        pov "Well, nothing much, but..."
+        pov "I'm new to this part of town, and was wondering if you had any suggestions as someone who lives around here?"
+        show c5 outside 8
+        with dissolve
+        man "Oh, gotcha."
+        man "Well, it's pretty boring around here, honestly."
+        man "If you're looking for fun, I'd recommend heading to Granville instead, but I'm sure you're already familiar with it."
+        man "That's where I go any time I'm in the mood for a bar or nightclub."
+        pov "I see..."
+        pov "I guess if you're experienced with those sorts of places, you must be pretty popular with the ladies?"
+        show c5 outside 9
+        with dissolve
+        man "Haha, no, not especially."
+        man "I'm usually just stuck as the wingman for one of my buddies."
+        pov "Ah, that's unfortunate..."
+        pov "{i}(Well, now that the conversation has taken this direction...){/i}"
+        menu:
+            "Give him some entertainment. [gr]\[SexExperiance +1\]":
+                pov "Say..."
+                pov "Seeing as you've been having a hard time..."
+                show c5 outside 10
+                with dissolve
+                pov "I'm in a good mood, so I wouldn't mind letting you touch me a little bit."
+                man "Pff—?!"
+                pov "Hey, now! Don't get too excited."
+                pov "I just meant you can touch my breasts a little bit... over my clothes, of course."
+                pov "We're in public, and I'm not that easy, so you'll have to make do with this."
+                pov "What do you say?"
+                man "......"
+                man "Well, if you're actually serious... there's no way I'd decline the offer..."
+                show c5 outside 11
+                with dissolvelong
+                pov "Ahh..."
+                man "Wow... I can't believe you're letting me do this."
+                man "It's been a while since I've last touched a girl."
+                pov "Haha, really?"
+                man "Yeah, probably half a year now, if not more."
+                show c5 outside 12
+                with dissolve
+                pov "......"
+                man "Are you enjoying this, too?"
+                man "Normally you don't just let a random guy touch you..."
+                man "That is, unless, you were seeking something else."
+                man "You're pretty hot, and I'm guessing you're into me, too, so..."
+                man "Why don't we go inside? We're right by my home, after all."
+                man "This makes things pretty convenient, don't you think?"
+                show c5 outside 13
+                with dissolve
+                pov "Haha... well, I appreciate the offer."
+                pov "But I told you I'm not that easy."
+                pov "I'm not interested in doing anything like that with someone I've just met."
+                if exh>=3:
+                    pov "{i}(I mean... I could follow him and just touch him a little bit, to give him some release.){/i}"
+                    pov "{i}(If that's all it was, and it ended there... sure... maybe.){/i}"
+                    pov "{i}(But a complete stranger? No way...){/i}"
+                    pov "{i}(I've been pretty open lately, sexually that is, but that's a step too far... at least for me right now.){/i}"
+                    pov "{i}(I need to at least be familiar with them first. It can't be someone I've never even seen before.){/i}"
+                else:
+                    pov "{i}(He's a complete stranger... there's no way I'd follow him inside.){/i}"
+                    pov "{i}(I mean, I doubt I'd be asked to go all the way... but still...){/i}"
+                    pov "{i}(You'd have to be pretty darn slutty to say yes in this situation.){/i}"
+                man "Aww... well, I won't push you then."
+                show c5 outside 14
+                with dissolvelong
+                pov "Anyway, I hope you enjoyed that little treat."
+                pov "I don't do that often... in fact, I think you might even be the first."
+                pov "So you better appreciate it."
+                man "Wow... well, thanks."
+                show c5 outside 15
+                with dissolve
+                pov "I should probably get going now, so I'll leave you to it, then."
+                man "Leave me to it...? Huh?"
+                man "...... Oh, {i}that's{/i} what you mean!"
+                pov "Make sure to clean up!"
+                man "Hey now!"
+                "......"
+                show c5 outside 16
+                with dissolvelong
+                pov "Well, that was something, all right..."
+                pov "I did get a bit nervous at the end when he was trying to bring me home, but he gave up right away, which was good of him."
+                pov "It's kind of fun for me, taking the lead like that, though."
+                pov "Maybe that's another kink of mine? Playing the dominant role?"
+                pov "Never really considered that before..."
+                pov "I'm fine with the guy taking the lead, too, but..."
+                stop music fadeout 2.0
+                pov "...... Anyway, that's enough fooling around for now, so I'll start heading home."
+                "......"
+                $sexe+=1
+                $c5touch = True
+                jump c5pizza
+            "Say goodbye here.":
+                pov "{i}(Nah...){/i}"
+                pov "{i}(I just felt like striking up a conversation for a second.){/i}"
+                if inn>=1:
+                    pov "{i}(Plus, I'm not a slut or anything like that... so I don't want to get carried away.){/i}"
+                show c5 outside 14
+                with dissolvelong
+                pov "Anyway, I should probably get going soon."
+                pov "Thanks for the suggestions, and for answering my question."
+                man "Oh, sure, no problem."
+                pov "I hope you have better luck with girls! I'm not experienced with bars or dating, but I've heard it can be a bit of a bloodbath."
+                pov "You're pretty handsome, though, so I think you'll be fine."
+                show c5 outside 15
+                with dissolve
+                man "Haha, really? Well, thanks for the compliment."
+                man "Maybe we'll come across each other again some other time. See ya!"
+                pov "Sure! Have a nice day."
+                "......"
+                show c5 outside 16
+                with dissolvelong
+                pov "Well, that's that..."
+                pov "It was nice talking to someone new, and hearing their take on the area."
+                pov "Especially from someone who seems similar in age to me."
+                pov "Not that I really learned anything new or exciting, but... I still appreciated the chit chat."
+                pov "...... Anyway, I should start heading home now."
+                stop music fadeout 2.0
+                pov "My legs are starting to get tired from all the standing and walking."
+                "......"
+                jump c5pizza
+
+    label c5pool:
+        show c5 locker 1
+        with fadeholdlong
+        play music "<from 1.6>audio/absurd.mp3" fadein 0.5 loop
+        "A little while later."
+        pov "Okay, that should be enough lotion for my legs now."
+        pov "Can't be risking any skin damage, now that I'm a model."
+        pov "I used to take precautions even before this summer, since I've always liked being as cute or as pretty as I can, but..."
+        show c5 locker 2
+        with dissolve
+        pov "Now, there's a bigger reason behind it."
+        pov "I'd hate to have to retire early from a job I love."
+        pov "...... Just my arms now, and then I can start swimming."
+        show c5 locker 3
+        with dissolve
+        pov "Hmmm..."
+        pov "Last time I came here, there was that girl staring at me..."
+        pov "I don't see her now, though."
+        pov "...... Well, that's to be expected. The chances of coming across the same person in a place like this are slim to none."
+        pov "Especially with Vancouver being as big as it is."
+        pov "Anyway, guess I'm about ready to head in."
+        show c5 locker 4
+        with fadeholdlong
+        "An hour later."
+        pov "Man, chlorine sure does stink..."
+        pov "I'm glad there's showers here that you can use."
+        pov "I'd hate to have to go home smelling like that."
+        pov "I don't even know if perfume would take care of it. Even if it did, I'd probably have to use a lot of it, and end up stinking for another reason instead..."
+        show c5 locker 5
+        with dissolve
+        pov "It was nice getting a little bit of exercise, though."
+        pov "Don't have too much energy after work, though, so an hour or so is just about right."
+        pov "Now I can head home feeling nice and refreshed."
+        show c5 locker 6
+        with dissolvelong
+        wom "{i}*cough*{/i}"
+        pov "{i}(Hmm...?){/i}"
+        pov "{i}(For some reason, I feel like I recognize this woman here.){/i}"
+        show c5 locker 7
+        with dissolve
+        pov "{i}(There's no way...){/i}"
+        pov "{i}(Is it the same girl as before?){/i}"
+        pov "{i}(The one that was staring at me when I was changing?){/i}"
+        pov "{i}(If so, I think this is more than just a coincidence...){/i}"
+        show c5 locker 8
+        with dissolve
+        wom "Ahh..."
+        pov "{i}(Yeah, that's her, all right...){/i}"
+        pov "{i}(I'm kind of curious what she's up to.){/i}"
+        show c5 locker 9
+        with dissolve
+        pov "{i}(Instead of just ignoring her...){/i}"
+        pov "{i}(Should I try talking to her, this time?){/i}"
+        menu:
+            "Talk to her. [gr]\[Les +1\] [gr]\[SexExperiance +1\]":
+                label galleryScene14:
+                pov "{i}(It's not like there's any harm in simply striking up a conversation.){/i}"
+                pov "{i}(Plus, well... I don't mind getting attention from other girls.){/i}"
+                show c5 locker 10
+                with dissolvelong
+                pov "Hello..."
+                wom "Oh...?"
+                pov "We've seen each other before, haven't we?"
+                pov "What brings you here so often? {i}*giggles*{/i}"
+                wom "Haha, I could ask you the same!"
+                wom "But I think we might both be after the same thing."
+                wom "Why don't we go over here and take a seat?"
+                show c5 locker 11
+                with dissolvelong
+                wom "Oh? You're more nervous than I thought."
+                wom "Maybe I had the wrong impression. You're not experienced, are you?"
+                pov "Experienced?"
+                wom "Oh, well... that makes this a bit awkward."
+                wom "I'm not just here to go swimming, you see."
+                wom "I enjoy looking at girls... especially when they're naked or lightly dressed... and there's only one place you can do that easily without it being strange."
+                wom "Do you get what I'm saying?"
+                pov "Oh... I see now."
+                pov "Yeah, that's pretty clever of you."
+                show c5 locker 12
+                with dissolve
+                wom "It is, isn't it?"
+                wom "Maybe when you get more used to things, you can come for the same reasons as me."
+                wom "Hmm..."
+                wom "Why don't I help you relax some more?"
+                wom "I know just the right thing... I'll give you a little... 'massage'."
+                show c5 locker 13
+                with fadeholdlong
+                "A few minutes later."
+                pov "Ahh..."
+                wom "My, you have a nice pair of breasts, don't you?"
+                wom "They're a bit bigger than mine, and I'm already quite proud of my breasts."
+                pov "Really? Thank you..."
+                pov "I've never really heard another girl's opinion, although there might have been a few girls in school who acted jealous..."
+                show c5 locker 14
+                with dissolve
+                wom "Jeez, I bet."
+                wom "If it were me, I'd have found a way to do more than just looking, though."
+                wom "It's been a while since I was last in school, though."
+                wom "How old are you?"
+                wom "That is, if you're okay with telling me, of course."
+                show c5 locker 13
+                with dissolve
+                pov "Sure... I'm 19."
+                wom "Wow. That makes me feel pretty old in comparison."
+                wom "I'm 26, so I'm sure I know a lot more about a girl's body than you might."
+                show c5 locker 15
+                with dissolve
+                wom "For example..."
+                pov "Ahhh——?"
+                wom "When you rub their nipples like this, in a circular motion..."
+                wom "It's like a KO punch, you could say."
+                wom "I don't know any girl who doesn't feel good from this."
+                wom "Some of them even get a little bit wet right away."
+                show c5 locker 16
+                with dissolve
+                pov "Wow..."
+                pov "Well, it does feel good, I'll give you that..."
+                pov "I've touched myself a little bit, of course, but nothing like this."
+                pov "I haven't had another girl touch my boobs before..."
+                wom "Well, there's a first for everything."
+                "{i}*door noise*{/i}"
+                wom "{i}*whispers* Uh-oh... our time might be up.{/i}"
+                show c5 locker 17
+                with dissolve
+                wom "Well, it took longer for someone to show up than I expected..."
+                wom "They usually disturb my fun a lot quicker than this."
+                wom "Well, we could always go into a private stall, but..."
+                show c5 locker 18
+                with dissolve
+                wom "I think that's been a big enough experience, for a virginal little girl like yourself."
+                wom "I don't want to scare you away, and have you never go near a girl again."
+                pov "Haha... I'm not really sure, but thank you?"
+                pov "You've taught me a neat technique, so I appreciate it."
+                wom "Sure. You can try it on yourself some time, the next time you're home."
+                pov "{i}(I really went along with the flow, huh...{/i})"
+                pov "{i}(I got a little caught up in the moment. This is not at all what I had planned...){/i}"
+                pov "{i}(But...){/i}"
+                pov "{i}(I didn't mind this.){/i}"
+                pov "{i}(She made me feel good, too... so it was a bit fun, I suppose...){/i}"
+                show c5 locker 19
+                with dissolve
+                stop music fadeout 3.0
+                pov "{i}(In fact, I think I might have gotten wet from that...){/i}"
+                pov "{i}(Am I going to need another shower before I go home...?){/i}"
+                pov "{i}(Crap...){/i}"
+                "......"
+                $les+=1
+                $sexe+=1
+                $c5leslocker = True
+                jump c5pizza
+            "Maybe another time.":
+                pov "{i}(Nah...){/i}"
+                pov "{i}(I'd like to know why she's here all the time, but I feel like it'll be hard to get out of things once I talk to her.){/i}"
+                show c5 locker 8
+                with dissolve
+                pov "{i}(Plus, if she's here all the time... it's not like this is the only chance in the world of seeing her again.){/i}"
+                stop music fadeout 2.0
+                pov "{i}(I think I'll just head home for now, since it's starting to get late.){/i}"
+                "......"
+                jump c5pizza
+
+    label c5pizza:
+        $ renpy.end_replay()
+        show c5 pizza 1
+        with fadeholdlong
+        play music "<from 5.0>audio/obento.mp3" fadein 2.0 loop
+        "A few days later."
+        pov "Isn't there something to do...?"
+        pov "It's a day off, and Josh and Connor are busy today, so it's been a boring few hours for me."
+        pov "It's almost dinner time now, though, and I'm getting pretty hungry..."
+        pov "What should I order?"
+        show c5 pizza 2
+        with dissolve
+        pov "Well..."
+        pov "I'm not in the mood for burgers or Asian food tonight, honestly."
+        pov "Maybe... pizza?"
+        pov "I feel like I've been ordering it too often lately."
+        pov "But..."
+        show c5 pizza 3
+        with dissolve
+        pov "It also gives me an opportunity to have fun, so it's like killing two birds with one stone."
+        pov "If I {i}did{/i} order again tonight..."
+        pov "After this, it'd probably be best to take a bit of a break from ordering, so they don't get any funny ideas about me."
+        pov "Maybe in a few weeks I'll consider it again."
+        pov "But for now... should I wait a little bit before I call first?"
+        pov "Or should I call them now, seeing as it's around the time that boy is usually working..."
+        menu:
+            "I'll call immediately. [gr]\[PizzaBoy\]":
+                label galleryScene13:
+                $c5pizzaboy = True
+                pov "Well, I don't have any new outfits prepared right now."
+                pov "I ordered a new cosplay outfit, but it will take a while to ship yet."
+                pov "Hmmm... so, in this case..."
+                pov "Instead of just showing my body off..."
+                pov "I don't know... maybe it's time to step things up a bit, and help {i}them{/i} out for once?"
+                show c5 pizza 4
+                with dissolve
+                pov "......"
+                pov "I'll decide whenever they arrive."
+                pov "It's not something I can really plan myself for, after all."
+                pov "For now, I need to call them and order something."
+                pov "Maybe the shrimp pizza is good? I haven't tried that one yet."
+                "......"
+                show c5 pizza 5
+                with dissolve
+                pov "The delivery tracker says they're very close, so they should be here any minute now."
+                pov "He must be looking forward to this, or at least expecting something..."
+                pov "I highly doubt he'd pass the order over to another guy, and let him steal the fun away."
+                pov "Probably gets a little tingle in his pants any time he sees my name pop up."
+                show c5 pizza 6
+                with dissolve
+                pov "......?"
+                pov "I think I hear a car in the driveway."
+                pov "That must be them. I can't think of anyone else it could be."
+                show c5 pizza 7
+                with fadehold
+                pov "Hello there!"
+                pov "Thanks for coming all the over here again."
+                pov "You must be pretty familiar with this address now, huh?"
+                boy "Haha, I guess you could say that."
+                boy "The pleasure is all mine."
+                show c5 pizza 8
+                with dissolve
+                pov "{i}(He's smiling, so it's clear he's expecting something.){/i}"
+                pov "{i}(Can't say I blame him. I'd be looking forward to something, too, if I was a guy his age.){/i}"
+                pov "Well, before we get to the pizza itself..."
+                boy "{i}*gulp*{/i}"
+                show c5 pizza 9
+                with dissolvelong
+                pov "What do you think?"
+                pov "I know it's not the first time you've had a look, but I'm quite confident in my body."
+                show c5 pizza 10
+                with dissolvelong
+                pov "Especially with these shorts on... it emphasizes all the details pretty well, I think."
+                pov "I've had a few guys compliment me on my butt before."
+                boy "Well... it's quite nice, I'll admit."
+                pov "{i}(His shyness has gone away a bit, huh.){/i}"
+                pov "{i}(He's gotten more used to this.){/i}"
+                show c5 pizza 9
+                with dissolve
+                pov "It's not often you come across a girl as open as myself, hey?"
+                boy "Haha... definitely not... but I do appreciate it."
+                show c5 pizza 10
+                with dissolve
+                pov "{i}(I feel like he's expecting something a bit more.){/i}"
+                pov "{i}(This is a chance to try something new...){/i}"
+                pov "{i}(I know I'll have other opportunities down the road, if I stop here, but...){/i}"
+                pov "{i}(Here and now... should I?){/i}"
+                pov "{i}(.......){/i}"
+                menu:
+                    "Give him a 'tug'. [gr]\[SexExperiance +1\]":
+                        show c5 pizza 11
+                        with dissolve
+                        pov "Tell you what..."
+                        boy "Hmm?"
+                        pov "Since we're both after something similar..."
+                        pov "I'll help {i}you{/i} out this time, if you catch my drift."
+                        pov "You're not in a rush, are you?"
+                        stop music fadeout 2.5
+                        boy "Wait, really?! N-No, not at all! I have a few minutes to spare."
+                        pov "Then close the door behind you, and come over here."
+                        "......"
+                        show c5 hj 1
+                        with fadeholdlong
+                        play music "audio/blues.ogg" fadein 4.0 loop
+                        pov "Wow..."
+                        pov "{i}(.......){/i}"
+                        pov "{i}(This is my first time seeing one up close like this...){/i}"
+                        pov "{i}(I've also never touched a penis before...){/i}"
+                        pov "{i}(It feels kind of... weird... a lot harder and warmer than I imagined.){/i}"
+                        pov "{i}(No wonder guys have so much trouble hiding it when they get excited.){/i}"
+                        pov "{i}(Doesn't it hurt when they're hard and have clothes on?){/i}"
+                        pov "{i}(I guess girls aren't the only ones with problems...){/i}"
+                        show c5 hj 2
+                        with dissolvelong
+                        pov "How's this?"
+                        boy "Ohh... man, this is good."
+                        pov "I have to admit... I've never done this with a guy before."
+                        pov "So, if I'm doing something wrong, please let me know."
+                        pov "I've seen videos, so I know the general idea, but..."
+                        pov "Just pulling it back and forth like this is fine, right?"
+                        pov "I'm not holding it too tightly?"
+                        boy "N-No, it's just right... please keep going."
+                        pov "Okay."
+                        "......"
+                        pov "My legs are getting a bit tired, though... do you mind if we go over to this chair here?"
+                        boy "S-Sure..."
+                        show c5 hj 3
+                        with dissolvelong
+                        pov "Wow... you've gotten even bigger than before."
+                        boy "Ahh... yeah..."
+                        pov "I'm guessing I'm doing it right, considering there's this... weird throbbing feeling."
+                        pov "How's the speed?"
+                        boy "G-Good... you can go a bit faster if you want."
+                        pov "Alright."
+                        show c5 hj 4
+                        with dissolvelong
+                        pov "I'm not sure how to make guys finish, though..."
+                        pov "I don't know any techniques, or anything like that."
+                        pov "Does it just happen naturally after a while?"
+                        pov "I only have experience with myself and my own body..."
+                        boy "N-No, you're doing good... I'm starting to feel it."
+                        show c5 hj 5
+                        with dissolvelong
+                        pov "Maybe this position will make it easier for you to finish."
+                        pov "Are you getting closer?"
+                        boy "Ah... yes, I think I'm going to cum soon."
+                        pov "Good, good."
+                        pov "I'm not sure what to do with it once you let it out, though..."
+                        pov "Should I get a tissue just in case?"
+                        pov "That's pr——"
+                        show c5 hj 6
+                        with pixellate
+                        pov "W-Woah!"
+                        boy "Ahh... oh my god..."
+                        boy "I can't hold back any longer!"
+                        pov "You're cumming all of a sudden!"
+                        pov "{i}(I'm not sure what to do here... I didn't expect it to start flying out so suddenly.){/i}"
+                        show c5 hj 7
+                        with dissolve
+                        boy "Holy..."
+                        pov "Is that all?"
+                        pov "Did you let it all out?"
+                        boy "Y-Yeah, I think so..."
+                        boy "I haven't jerked off for a while now, so..."
+                        boy "There's a bit more than usual, maybe..."
+                        pov "I see..."
+                        pov "......"
+                        show c5 hj 8
+                        with dissolve
+                        pov "I don't have a mirror, so I can't tell, but..."
+                        pov "Did it get on my face?"
+                        pov "I feel something wet on my cheek, so I'm guessing so..."
+                        boy "Yeah... a little bit..."
+                        boy "I'm sorry..."
+                        pov "No, it's fine... it's my fault for not figuring out the timing."
+                        pov "{i}(It's kind of sticky... and there's a weird smell to it that I haven't experienced before...){/i}"
+                        pov "{i}(This is what semen is, huh...){/i}"
+                        pov "{i}(It'll take some time for me to get used to.){/i}"
+                        pov "{i}(Especially the smell...){/i}"
+                        pov "{i}(.......){/i}"
+                        show c5 hj 9
+                        with fadehold
+                        pov "Okay, I think I'm all washed off now."
+                        pov "Didn't think it would stick to my face that much."
+                        pov "Hmm..."
+                        pov "It was an interesting experience for me, since I haven't done anything like this before."
+                        pov "What about you? Are you satisfied?"
+                        boy "Y-Yeah, it was great..."
+                        pov "That's good! I'm glad I was able to do it properly, then."
+                        show c5 hj 10
+                        with dissolve
+                        pov "{i}(He seems kind of embarrassed now...){/i}"
+                        pov "{i}(I've heard that guys switch moods once they finish, so that's probably the case here.){/i}"
+                        pov "{i}(In which case... I should let him hurry and clean up.){/i}"
+                        pov "{i}(I still have to pay for the pizza, after all, and he's still working... so I hope I didn't cause him too much trouble.){/i}"
+                        pov "{i}(It only took about five minutes, so it's probably fine, but I'm not sure.){/i}"
+                        pov "{i}(.......){/i}"
+                        pov "{i}(That was sure something, huh...){/i}"
+                        pov "{i}(My first time touching a penis, and first time seeing semen.){/i}"
+                        pov "{i}(It was pretty fun, I'll admit...){/i}"
+                        stop music fadeout 3.0
+                        pov "{i}(I'll need some time to process this, though.){/i}"
+                        pov "{i}(Anyway... I should get back to him.){/i}"
+                        "......"
+                        play music "<from 5.0>audio/obento.mp3" fadein 2.0 loop
+                        $c5handjob = True
+                        $hjcount+=1
+                        $sexe+=1
+                    "I'm not ready to try something like that yet.":
+                        show c5 pizza 11
+                        with dissolve
+                        pov "{i}(Nah... I'll have plenty of other chances to do something like that.){/i}"
+                        pov "{i}(Maybe I'd feel more comfortable doing it with someone I'm closer with?){/i}"
+                        pov "{i}(Josh, or Connor, maybe? I'm not sure...){/i}"
+                        pov "{i}(It would be my first time touching a guy, so that might be the safer choice...){/i}"
+                        pov "{i}(......){/i}"
+                        pov "Anyway, I'd like to keep you hanging around longer, but I'm sure you have other work to attend to."
+                        boy "Haha... well, I'm not in that much of a rush..."
+                        show c5 pizza 8
+                        with dissolve
+                        pov "No, no— it's fine."
+                        pov "I know it's a bit disappointing... but I'll tell you what..."
+                        pov "Next time, if you see my name pop up for delivery... I'll give you something {i}more{/i}, if you catch my drift."
+                        boy "W-Wait... really?"
+                        boy "I'd love that!"
+                        pov "But now's not the time, so you'll have to hold back for now, alright?"
+                        boy "Y-Yeah... I gotcha..."
+                        "......"
+            "I'll wait a bit for someone else. [gr]\[PizzaGirl\] [gr]\[Les +1\]":
+                $c5pizzagirl = True
+                pov "I'll give it another hour or two."
+                pov "It's no doubt busy at this time, anyway, so I'll make it a bit easier on them."
+                pov "Not that I have any outfits, or anything in particular prepared for this occasion, but..."
+                pov "I guess I just want the female company, for some reason?"
+                "......"
+                show c5 pizza 5
+                with dissolve
+                pov "The delivery tracker says they're very close, so they should be here any minute now."
+                pov "I wonder if it will be a girl this time?"
+                pov "I suppose I can give them a quick little tease, before I let them get back on their way."
+                pov "Wouldn't want them to get in trouble for being late, after all."
+                show c5 pizza 6
+                with dissolve
+                pov "......?"
+                pov "I think I hear a car in the driveway."
+                pov "That must be them. I can't think of anyone else it could be."
+                show c5 pizza 12
+                with fadeholdlong
+                pov "Hey there! Come on in."
+                pov "Thanks for driving all the way here."
+                wom "No problem. It's the job, after all."
+                pov "{i}*giggles*{/i} Yeah, I guess you're right about that."
+                show c5 pizza 13
+                with dissolve
+                pov "Sorry, this is a bit personal... so if I'm being rude, you don't have to answer..."
+                pov "I'm just curious if you have a boyfriend, by any chance?"
+                wom "Oh, no, it's fine..."
+                wom "I'm single. No boyfriend or anything."
+                wom "I've been working so much for delivery that I haven't even had the time to think about a relationship."
+                pov "Ah, gotcha... thanks for telling me."
+                pov "In that case, if you're busy, I shouldn't keep you around too long."
+                show c5 pizza 14
+                with dissolvelong
+                pov "Just... one last thing..."
+                pov "What do you think of these shorts?"
+                pov "I'm pretty fond of them, but I'm not sure what other people think."
+                wom "Err... they fit nicely, I think..."
+                pov "I've had people catcall me before, or compliment my butt, so sometimes it's a bit of a hassle going outside..."
+                wom "I-I see... I can certainly understand why they might..."
+                show c5 pizza 15
+                with dissolvelong
+                pov "Oh?"
+                pov "I wasn't expecting to hear a compliment like that all of a sudden."
+                pov "You were pretty nervous before, after all."
+                show c5 pizza 16
+                with dissolve
+                wom "I-I didn't mean t——"
+                pov "No, it's OK— I'm flattered."
+                pov "There's no need to hold back your feelings, especially when you have something kind to say."
+                pov "Any girl would appreciate it."
+                wom "I suppose you might be right about that..."
+                show c5 pizza 15
+                with dissolve
+                pov "As a reward for being so nice, I'll give you an extra big tip tonight."
+                pov "That should help out a bit, especially since I've taken up some of your time."
+                wom "Thank you..."
+                pov "Anyway, should probably let you get it now, so we can pay."
+                pov "{i}(Maybe another time she'll be less busy.){/i}"
+                pov "{i}(And then, I'll also be prepared, for something more daring...){/i}"
+                pov "{i}(Or maybe more... physical?){/i}"
+                $les+=1
+                "......"
+    $ renpy.end_replay()
+    show c5 pizza-af 1
+    with fadeholdlong
+    pov "Hmm... this is pretty good."
+    pov "I guess I can have one more slice before I need to put it in the fridge."
+    pov "Have to be careful with calories, after all, and pizza is pretty high in them..."
+    pov "I could gain weight easily if I'm not careful."
+    if c5handjob:
+        show c5 pizza-af 2
+        with dissolve
+        pov "...... It's still hard to believe I just did what I did, though..."
+        pov "Well, I'll be giving the pizza delivery a rest for a few weeks like I planned."
+        pov "If I didn't, things would probably spiral out of control."
+        pov "I'm not ready to go any further than that right now, so..."
+        pov "......"
+    else:
+        show c5 pizza-af 2
+        with dissolve
+        pov "Well... that'll be enough pizza for a few weeks now, I guess."
+        pov "I'll call again once things have calmed down a bit, since I don't want them to get the wrong impression of me."
+        pov "For now, I'll look at hanging out with my friends."
+        pov "Maybe [fr] is free again?"
+        pov "I'm sure Luna would be willing to hang out, too. She's super friendly."
+    show c5 pizza-af 3
+    with dissolvelong
+    pov "Anyway, it's starting to get dark outside now, so..."
+    pov "I'll watch a few episodes of something on Netflix, then maybe go on my computer for a little bit before bed."
+    stop music fadeout 3.5
+    pov "I have work at the cafe tomorrow afternoon, so I don't want to be up too late."
+    pov "I like having a few hours before work to relax, before I need to get ready."
+    pov "Hmm... what should I watch..."
+    "......"
+
+    show c5 luna 1
+    with fadeholdlong
+    play music "<from 10.8>audio/sparkle.mp3" fadein 2.0 loop
+    "A couple hours earlier, in another part of town..."
+    label galleryScene16:
+    luna "Okay, the bath should be ready soon."
+    luna "I need to soake and relax after how busy it was today..."
+    luna "Not that I really get sweaty, personally, but a bath always makes me feel so much better when I'm tired like this."
+    show c5 luna 2
+    with dissolve
+    luna "Hmmm..."
+    luna "My boobs still aren't getting bigger, huh..."
+    luna "I'm already 18, so I'll doubt they'll grow much bigger than this... if at all..."
+    luna "I wonder why some girls get so lucky in that regard, and others not as much..."
+    luna "[pov], for example, is basically the same age as me, and her breasts seem a lot bigger."
+    luna "I wish mine were that big..."
+    luna "Oh well..."
+    luna "There's plenty of people out there who prefer smaller breasts, too."
+    luna "I should be more confident about it!"
+    show c5 luna 3
+    with dissolve
+    luna "Oh, shoot!"
+    luna "I forgot I was still running the bathwater."
+    luna "I shouldn't space out and risk it overflowing..."
+    luna "Mom would get so mad at me if she found out I made a mess of the bathroom."
+    luna "She hates it when things aren't perfectly clean."
+    show c5 luna 4
+    with dissolve
+    luna "Mmm... okay... I turned it off."
+    luna "And it seems to be the right temperature, too."
+    luna "Guess that means it's my cue to hop in."
+    luna "Time to relax and take it easy for a little while."
+    "......"
+    $ renpy.end_replay()
+    show c5 luna 5
+    with fadehold
+    luna "Ahh... that's much better."
+    luna "I feel like a new girl, almost."
+    luna "That shampoo mom bought smells really nice, too."
+    luna "She's a lot more experienced with those sorts of things than I am."
+    luna "I use perfume every now and then, too, since I'm a girl... but I don't have quite the same sense as her yet."
+    show c5 luna 6
+    with dissolve
+    luna "Hmmm..."
+    luna "...... I wonder what dad is up to right now?"
+    luna "He's a part of the military, so he's away from home a lot of the time."
+    luna "Sometimes he even gets sent to other countries for peacekeeping missions, and things like that."
+    luna "Mom doesn't mind... and me and my brother have learnt to deal with as we've gotten older, too."
+    luna "I used to cry whenever he had to go away for a while."
+    luna "And even though I've gotten used to it now, I still do get lonely sometimes."
+    luna "I love my dad, of course, like any girl does."
+    show c5 luna 7
+    with dissolvelong
+    luna "He doesn't really share photos with us... or at least mom doesn't let us see most of them."
+    luna "But if I had to picture him at work..."
+    luna "It'd be something like this, I guess?"
+    luna "Maybe I've watched too many movies, though."
+    luna "Does he even use a gun...?"
+    luna "Well... he's not on the front lines or anything... so probably not."
+    luna "The world is pretty peaceful these days, after all."
+    show c5 luna 8
+    with dissolvelong
+    luna "Anyway..."
+    luna "It's almost six o'clock, so it's about time for dinner now, I think."
+    luna "I should go see mom and ask when it's ready."
+    luna "Her meals are always delicious, so I don't mind waiting... but I {i}am{/i} getting pretty hungry."
+    "......"
+    show c5 luna 9
+    with fadeholdlong
+    luna "{i}*yawns*{/i}"
+    luna "How is dinner going, mom?"
+    luna "I didn't get a chance to eat lunch at work, so I'm starving..."
+    show c5 luna 10
+    with dissolve
+    lmom "Oh, Luna..."
+    lmom "You're finished with your bath already?"
+    lmom "It's almost done cooking in the oven, so it should be ready in about 5 minutes or so."
+    lmom "......"
+    lmom "You haven't been overworking at that job of yours, have you?"
+    show c5 luna 11
+    with dissolve
+    luna "Oh, no... it's nothing like that."
+    luna "Lucas makes us work reasonable hours, and he pays decently enough, so I'm not overly stressed or anything."
+    luna "It's just... it's my first job and all, and I'm still new, so... I'm too nervous to eat at work sometimes."
+    lmom "Well, you are still young, so I can't blame you for that."
+    lmom "Just make sure not to overdo it once your university courses start."
+    lmom "School takes priority for someone your age."
+    show c5 luna 12
+    with dissolve
+    luna "Yeah, I know."
+    luna "I'm mostly doing it for the spare money, and to help out with tuition a bit."
+    luna "Although..."
+    luna "The girls I've been working with have been pretty fun to talk to, lately."
+    luna "There's [vio], who I've already told you about, and then there's [pov], the new girl."
+    luna "She's really nice! We get along pretty well, I think."
+    lmom "Oh? You should tell us more while we're eating dinner."
+    lmom "Speaking of which... it should be ready any second now..."
+    "......"
+    show c5 luna 13
+    with fadehold
+    "A couple hours later."
+    luna "{i}(Jeez, I'm still stuffed...){/i}"
+    luna "{i}(Mom sure doesn't like to let us go hungry, huh.){/i}"
+    luna "......"
+    luna "Hey, Oli, can you change the channel to something else?"
+    luna "They're talking about sports now, and I really don't have an interest in any of that..."
+    show c5 luna 14
+    with dissolve
+    oli "Huh? Oh, sure, I guess."
+    oli "Wait... I'm not the one with the remote."
+    oli "If you wanna switch channels, you'll need to do it yourself."
+    luna "Oh... you're right!"
+    luna "Well, that was stupid of me."
+    show c5 luna 15
+    with dissolvelong
+    luna "Okay, that's much better."
+    luna "Now we can watch something where I understand what the heck they're actually saying."
+    oli "Yeah, it's not like girls understand what entertainment really is."
+    show c5 luna 16
+    with dissolve
+    luna "Hey, you're not picking a fight, are you?"
+    luna "I never said sports are bad... I just don't have an interest in them personally."
+    luna "And it's not like there's an issue with the Disney channel, either."
+    luna "You used to watch it all the time with me when we were younger."
+    show c5 luna 17
+    with dissolve
+    oli "Yeah, but I'm not a kid anymore, Luna."
+    oli "I'm going to be a regular for my uni's hockey team this fall."
+    oli "Obviously I'm going to be more interested in sports than some random romance or comedy show."
+    oli "Shouldn't you share the remote with me sometimes, and let me choose, too?"
+    show c5 luna 16
+    with dissolve
+    luna "Fine... whatever..."
+    luna "We'll finish this episode, and then you can watch your sports stuff for a while if you want."
+    luna "I guess you're right that I shouldn't hog the remote all the time..."
+    luna "Sorry..."
+    show c5 luna 18
+    with pixellate
+    "{i}*meow*{/i}"
+    luna "W-Woah!"
+    show c5 luna 19
+    with dissolve
+    luna "Man... you scared the heck out of me, Felix."
+    luna "Do you want attention that badly?"
+    luna "Fine... fine..."
+    luna "You'd rather sit with nice Luna instead of grumpy mister Oliver, huh?"
+    oli "......"
+    show c5 luna 20
+    with dissolve
+    luna "Tired, it looks like..."
+    luna "Mom must have given you treats while we were watching."
+    stop music fadeout 4.0
+    luna "{i}(Well...){/i}"
+    luna "{i}(Guess I'll be heading to bed like Felix soon, too.){/i}"
+    luna "{i}(I don't like staying up much later than 10 o'clock, and it's already half past eight.){/i}"
+    luna "{i}(I'm more a morning person, personally, unlike Oliver, who sleeps in every minute he can...){/i}"
+    luna "{i}(...... Oh, that's right!){/i}"
+    luna "{i}([pov] is joining me for my shift tomorrow, I think?){/i}"
+    "......"
+
+    play music "audio/funktastic.mp3" fadein 3.0 loop
+    show c5 cafe 1
+    with fadeholdlong
+    "The next day."
+    pov "Nobody else is here, so that'll make changing pretty quick."
+    pov "[vio] isn't working today, and Luna already started, I think, so it makes sense that it'd be empty."
+    pov "Hopefully it's not too busy today... it can be kinda hectic when it's busy and all three girls aren't here."
+    show c5 cafe 2
+    with dissolve
+    pov "We're closing a couple hours early today, since it's a holiday."
+    pov "So... maybe it'd be a good opportunity to ask Luna if she wants to hang out?"
+    pov "It's been a while since we've last done that."
+    pov "We've only properly hung out once, in fact, when we went bowling together."
+    pov "Maybe she'd be interested in karaoke?"
+    show c5 cafe 3
+    with dissolvelong
+    pov "I'll ask her after work, and see if she's free."
+    pov "We get along well, but I still feel like I don't know her that well..."
+    pov "[vio] is even {i}more{/i} of a mystery, but at this point I'm starting to think that's just her character."
+    pov "She doesn't talk about herself too much."
+    pov "Heck, even if I ask, she usually redirects the conversation somehow to avoid answering."
+    show c5 cafe 4
+    with dissolve
+    pov "But everyone has their own quirks and personality, so that's completely fine, I think."
+    pov "I'm a lot more open, and don't really like keeping secrets, but not everyone is like that."
+    voi "......"
+    pov "I'm probably pretty similar to guys in that regard... which explains why me and CJ get along so well."
+    voi "{i}*gulp*{/i}"
+    pov "......?"
+    show c5 cafe 5
+    with dissolve
+    pov "Huh...?"
+    pov "Was the door always open...?"
+    pov "I swear I closed it, but I might have forgotten to lock the door."
+    pov "If so..."
+    pov "Was it just the wind... or was someone peeking on me...?"
+    "......"
+    show c5 cafe 6
+    with fadeholdlong
+    "A few hours later, after work."
+    luna "Whew... I'm already pooped out."
+    luna "I'm glad we're finishing early today."
+    pov "Same here!"
+    pov "We're both still new to working here, so I almost have a panic attack when they order something I'm not familiar with..."
+    show c5 cafe 7
+    with dissolve
+    luna "Well, that's what Lucas is for, I guess!"
+    luna "It's kind of annoying having to scream his name when we need help, though."
+    luna "I wish he was out here with us more often, but I guess he has office work to take care of, too."
+    luna "I don't envy him... sounds stressful."
+    show c5 cafe 8
+    with dissolve
+    pov "Yeah... I've got my hands full just taking care of the customers."
+    pov "I'd lose my mind if I had to do all those calculations and business emails, too."
+    pov "By the way..."
+    pov "Are you free today?"
+    pov "It's been a while since we last hung out, so I was wondering if you wanted to go to a karaoke place, or something like that?"
+    show c5 cafe 7
+    with dissolve
+    luna "Oh, sure! I'm free today, so no problem there."
+    luna "And I enjoy karaoke, so that sounds like fun to me!"
+    luna "I think we should probably invite Lucas too, though..."
+    luna "We left him out last time, and I'm always worried he gets lonely around here..."
+    show c5 cafe 8
+    with dissolve
+    pov "Sure. I'll go up and ask if he wants to come with us!"
+    pov "Do guys like karaoke as much as girls do, though?"
+    pov "Hmm... well, he {i}did{/i} mention being in a band."
+    pov "I guess it's probably fine, then."
+    "......"
+    show c5 karaoke 1
+    with fadeholdlong
+    luc "{i}*singing*{/i}"
+    luc "Shit, I don't think I remember the lyrics to this part..."
+    luna "Try your best, Lucas!"
+    luna "Don't get cold feet just because there's two girls behind you, judging your every move!"
+    luc "Hey, that doesn't help!"
+    show c5 karaoke 2
+    with dissolve
+    pov "{i}*giggles*{/i}"
+    pov "{i}(He's sure enjoying himself, though...){/i}"
+    pov "{i}(I guess I shouldn't be surprised, since he did mention being in a band.){/i}"
+    pov "{i}(...... Oh, it's my turn next, I think.){/i}"
+    pov "{i}(I'll try my best not to lose to him.){/i}"
+    show c5 karaoke 3
+    with fadeholdlong
+    luc "Alright... that was pretty fun."
+    luc "Can't remember the last time I went to karaoke."
+    luc "Do you mind if I have a smoke?"
+    luna "Yuck..."
+    pov "No, it's fine... we're outside, after all."
+    show c5 karaoke 4
+    with dissolve
+    luc "{i}*exhales*{/i}"
+    luna "You really should stop smoking, you know..."
+    luna "Girls don't like it that much when a guy has unhealthy habits."
+    luc "Yeah, yeah... I know."
+    pov "Are you heading home after this?"
+    luna "Oh, me? No, no! I'm just replying to my mom since she was asking where I was."
+    luna "I can hang out for a little bit longer."
+    show c5 karaoke 5
+    with dissolve
+    luc "Hmm... in that case, do you two want to come over to my place?"
+    luc "I live only a short walk away from here, and I don't think you two have the energy to party a second time."
+    pov "Oh, hmm..."
+    pov "Well, if Luna is coming, I'd be willing to."
+    luna "Good thinking, [pov]. You should never go to a man's house alone."
+    luc "Hey, do you take me for some kind of weirdo or something? Jeez..."
+    "......"
+    show c5 luchome 1
+    with fadeholdlong
+    luc "Well, this is my place."
+    luc "It's not much, but feel free to make yourself at home."
+    luc "No need to worry about shoes, either, since I don't have any carpet here."
+    show c5 luchome 2
+    with dissolve
+    pov "Okay, thanks."
+    pov "{i}(Personally, I think it's gross to wear shoes at home, but if the owner says it's fine...){/i}"
+    pov "{i}(I'll take them off when I sit down, though. Even if they're fine with it, I can't bring myself to get furniture dirty.){/i}"
+    luna "Well, it's probably such a mess here that you don't even notice the extra dirt..."
+    luc "Hey, we both know I'm not a slob!"
+    pov "{i}(I'm a bit more tired than I thought...){/i}"
+    pov "{i}(I guess I'll undo my hair for a bit and relax.){/i}"
+    "......."
+    show c5 luchome 3
+    with dissolvelong
+    pov "Hmm... quite the place you have here."
+    pov "I think I can start to believe you're in a band now."
+    luna "Yeah, it's hard for me to picture, too."
+    luna "He's never shown us any of his music before."
+    luna "But, if he is actually in one... that explains why he's so busy all the time."
+    show c5 luchome 4
+    with dissolve
+    pov "Oh? I always imagined you guys spent a lot of time together, since you seem so close."
+    luna "Nah. It's rare that he says yes to anything..."
+    luna "I guess I have you to thank for that, [pov]."
+    luna "Maybe you have some kind of persuasive power that I don't? {i}*laughs*{/i}"
+    show c5 luchome 8
+    with dissolve
+    luna "Me and Lucas are... hmm... I've only known him for a few months, but..."
+    luna "Maybe something like a second brother of mine?"
+    luna "No... maybe more like a mentor?"
+    luna "He's pretty scary at times, but he shows his nice side every now and then, too."
+    show c5 luchome 5
+    with dissolve
+    luc "Hey, maybe if you didn't make such a mess all the time I wouldn't have to scold you."
+    luc "And that's sure a lot of talk from a little girl like yourself."
+    luc "Maybe I should increase your hours, and reduce [pov]'s instead? Haha."
+    luna "No, please, anything but that! {i}*laughs*{/i}"
+    show c5 luchome 8
+    with dissolve
+    luna "You aren't that much older than me, though, I don't think..."
+    luna "Speaking of which... how old {i}are{/i} you?"
+    show c5 luchome 7
+    with dissolve
+    luc "Oh, I didn't tell you before...?"
+    luc "I'm 27. Well, just turned."
+    luna "Wait, you just had your birthday and didn't even mention it?"
+    luna "You should have told me! I'd have at least tried to do something for you."
+    show c5 luchome 6
+    with dissolve
+    luc "Yeah... that would have been pretty nice, now that I think of it."
+    luc "Alright, you can buy me something big and expensive next birthday! How about that?"
+    luna "Come on... you know I'm not making enough to afford anything like that."
+    luc "Haha, I'm kidding. It's the thought I appreciate."
+    luna "{i}Right{/i}? You shouldn't hide your birthday from people..."
+    show c5 luchome 9
+    with dissolve
+    pov "{i}(They sure get along, don't they...){/i}"
+    pov "{i}(It's kind of hard for me to interject.){/i}"
+    pov "{i}(And... though I'm sure Luna is just being nice...){/i}"
+    pov "{i}(I'm getting the impression that Lucas might be into her.){/i}"
+    pov "{i}(...... Well, I don't blame him... Luna is pretty cute, after all.){/i}"
+    pov "{i}(I'm sure Josh and Connor would fawn over her, too, if they ever met each other.){/i}"
+    pov "{i}(I guess it could be fun to hang out together, us two and the boys... but I'd feel pretty jealous if Luna stole their attention away from me.){/i}"
+    show c5 luchome 4
+    with dissolve
+    pov "{i}(Well, that just means I'd have to try even harder!){/i}"
+    "......"
+    show c5 luchome 10
+    with fadeholdlong
+    luna "Okay, I think my mom is calling me again."
+    luna "I should probably head back home now."
+    luna "What about you, [pov]?"
+    pov "Hmm... yeah, I should head home, too, before it gets too late."
+    pov "Thanks for having us over, Lucas."
+    pov "It was fun talking to you about music and things like that."
+    luc "Sure. I enjoyed it, too."
+    stop music fadeout 2.0
+    luc "I guess we'll see each other soon at work again, then."
+    luc "Be careful on the way home, you two."
+    "......"
+
+    show black
+    with fadeholdlong
+    "That same night..."
+    hide black
+    show c5 viobar 3
+    with fadeholdlong
+    play music "<from 20.5>audio/heartbit.mp3" fadein 1.5 loop
+    vio "They're in this bar, I'm guessing?"
+    vio "I have no idea what they look like, so I leave that up to you."
+    vio "It's your idea, after all."
+    ni "Yeah, yeah, I know."
+    ni "I think I see them over there."
+    show c5 viobar 4
+    with dissolve
+    vio "I really don't know what to say to them..."
+    vio "Aren't you nervous?"
+    ni "A little bit, yeah."
+    ni "But I'm sure they know how to handle these sorts of conversations, so it'll be more listening than anything."
+    ni "Don't worry. You don't have to agree to anything you aren't comfortable with."
+    vio "Yeah... that's true..."
+    show c5 viobar 5
+    with dissolve
+    ni "Alright, let's head over and introduce ourselves!"
+    ni "They look like they're waiting for some company."
+    vio "Okay, just settle down a notch..."
+    vio "I swear, your excitement levels are always all over the place."
+    "......"
+    show c5 viobar 6
+    with dissolvelong
+    wom "Hmm...?"
+    man "Oh?"
+    ni "Hello. It's Nick."
+    ni "Are you the two we planned on meeting tonight?"
+    ni "If I'm mistaken, then my apologies."
+    show c5 viobar 7
+    with dissolve
+    man "Oh, no, you're correct. That's us."
+    man "I'm glad we could meet you two in person."
+    show c5 viobar 6
+    with dissolve
+    ni "Likewise. Nice to meet you, too."
+    show c5 viobar 8
+    with dissolve
+    wom "And nice to meet you, as well."
+    wom "Feel free to take a seat."
+    wom "Me and my fiance got here a little bit early, and each had a beer, if you don't mind."
+    ni "No— not a problem!"
+    ni "[vio], you can take a seat first."
+    show c5 viobar 9
+    with dissolve
+    vio "......"
+    wom "Oh, [vio] is your name, is it?"
+    wom "That's a cute name. I wish my parents had picked something like that for me instead."
+    vio "Thank you..."
+    show c5 viobar 8
+    with dissolve
+    wom "Well, I should probably introduce myself as well now."
+    wom "My name is Sophia."
+    show c5 viobar 7
+    with dissolve
+    man "And I'm Nolan."
+    nol "We've been engaged for about a year now, and a couple for a few years more than that."
+    nol "I'm probably quite a bit older than you all... 45, if we're being specific."
+    nol "Sophia is more your age, I'm sure, as she's in her late twenties."
+    show c5 viobar 8
+    with dissolve
+    sop "Well... if I had to guess... you seem a couple years younger than me."
+    sop "Are the two of you in your {i}early{/i} twenties, perhaps?"
+    sop "You must not have much experience with this sort of thing, in that case."
+    show c5 viobar 10
+    with dissolve
+    ni "Haha... no, it's our first time, in fact."
+    ni "That's why we wanted to just meet up and get to know each other first."
+    ni "We're still not sure how much we'd enjoy it... but we're open to trying new things."
+    ni "And it interests me quite a bit, too."
+    ni "[vio] as well, to a smaller extent, but she's pretty nervous about it still."
+    show c5 viobar 11
+    with dissolve
+    vio "Well, {i}yeah{/i}. I've never done anything similar to this before."
+    vio "And you did plan this very suddenly, too, Nick."
+    vio "I mean... you both seem like nice people... but I'm still not sure."
+    vio "It's hard to know if I'd like this or not."
+    show c5 viobar 14
+    with dissolve
+    sop "I can see why it might be overwhelming to jump into it suddenly."
+    sop "What do you think, Nolan?"
+    nol "Hmm... how about this, then?"
+    nol "We could both spend 'time' in the same room, {i}but{/i} with our own respective partners."
+    nol "That way, you can get used to things, and see how you feel about it."
+    nol "There wouldn't be any strings attached, either, so you can stop or continue as you please, with your own boundaries."
+    nol "If you want more, that's fine, and if not, that's fine, too."
+    sop "Oh... that's a good idea!"
+    sop "That's probably the best way for first-timers to experience it."
+    sop "What do you two think?"
+    show c5 viobar 12
+    with dissolve
+    ni "Hmmm... that sounds good to me."
+    ni "I'm not especially nervous being naked around other people."
+    ni "And [vio] and me have done some things in public together, so I doubt it'd be too much of a problem for her."
+    ni "It's all up to her, though."
+    ni "I have to put my girlfriend's opinion first."
+    show c5 viobar 13
+    with dissolve
+    vio "Well......"
+    if vioc<=1 and not c4viosharing:
+        jump c5viosexother
+    menu:
+        "[vio] accepts their proposal. [gr]\[Vilot Sharing\]":
+            label galleryScene11:
+            vio "I guess since it's just being in the same room together..."
+            vio "And we don't have to commit to any touching right now..."
+            vio "In that case, I guess I'm okay with it."
+            ni "Wait, really? Awesome!"
+            vio "{i}But{/i}! I don't exactly share the same fetish of doing it in public, or in front of others, like you do, Nick."
+            vio "So I'm not sure I'll enjoy this."
+            vio "I'll just give it a try for now."
+            show c5 viobar 10
+            with dissolve
+            ni "Well, the lady has spoken."
+            ni "I guess that means we'll have having some fun tonight."
+            show c5 viobar 14
+            with dissolve
+            nol "Great. I'm glad we could come to an agreement that everyone would be comfortable with."
+            sop "But before we go, Nolan, we should share another beer with our guests and get to know them a bit better."
+            nol "Sure thing."
+            ni "I'll go get us each a beer then. What kind do you two like?"
+            "......"
+            show c5 viobar 15
+            with fadehold
+            ni "Well, I think we're both ready to head over to the hotel room."
+            ni "Did the beer help you relax a bit, [vio]?"
+            vio "Yeah... maybe..."
+            vio "And the chatting made me feel a bit more comfortable about it, too."
+            vio "It's just sharing the same room, after all."
+            show c5 viobar 16
+            with dissolve
+            nol "Well, in that case, we'll show you to the hotel room nearby."
+            nol "We reserved it yesterday, since we live a bit far away from here."
+            nol "We weren't sure if you two would be joining us, though, so we were prepared to have sex in there, just the two of us."
+            stop music fadeout 2.0
+            sop "I'm glad it'll be more than just me and Nolan in there."
+            sop "Maybe you can show us some of those techniques you talked about?"
+            "......"
+            show c5 viohotel 1
+            with fadeholdlong
+            play music "audio/low.mp3" fadein 2.0 loop
+            nol "Crap, I dropped the keys..."
+            nol "I must be getting old. I don't have quite the same hand-eye coordination that I used to."
+            sop "Oh, please... we both know that your vigor hasn't gone anywhere."
+            sop "And you're not even that old yet."
+            nol "Haha, you have a point..."
+            show c5 viohotel 2
+            with dissolvelong
+            ni "So, [vio]... are you ready for something new?"
+            vio "I guess so..."
+            vio "But I'm not sure how to feel until we actually get started."
+            vio "Won't it be distracting, with another couple with us?"
+            ni "Maybe, but that's part of the fun, isn't it?"
+            vio "Hmm..."
+            show c5 viohotel 3
+            with dissolve
+            nol "Okay, found 'em."
+            nol "Let's open up and have some fun."
+            nol "You can both shower first, if you'd like to."
+            sop "Aww... I thought the men would shower separately, and then me and [vio] would enter together."
+            nol "Hey, no need to scare her away already! {i}*laughs*{/i}"
+            "......"
+            show c5 viohotel 4
+            with fadeholdlong
+            "......"
+            vio "Hmm..."
+            vio "We're really all naked, huh..."
+            vio "I guess I'm not as embarrassed as I thought I'd be."
+            ni "Haha. Well, with all that sex outdoors we've done..."
+            vio "Yeah... maybe your weird fetishes have started making me immune to embarrassment."
+            vio "But... I'm still a little bit uncomfortable, I guess."
+            vio "We've only just met each other today, after all."
+            show c5 viohotel 5
+            with dissolve
+            sop "Okay, everyone's all showered up, so that just leaves..."
+            sop "Oh...?"
+            sop "Are you two a bit nervous still?"
+            sop "No worries. We'll let you both be for now, and you can have your fun together."
+            sop "It might be hard for you to get started if we're staring, after all."
+            show c5 viohotel 6
+            with dissolve
+            sop "Me and Nolan will be over here, on this bed, in the meanwhile."
+            vio "I see... thank you for being considerate."
+            sop "But... we're still planning to do this together, so..."
+            sop "Whenever you're both in the mood, and feel comfortable enough, you're more than welcome to come over to the bed and join us."
+            stop music fadeout 2.0
+            sop "We don't bite, after all. {i}*laughs*{/i}"
+            ni "Haha... well, we'll give it some thought, then."
+            "......"
+            show c5 viosex 1
+            with fadeholdlong
+            play music "audio/blues.ogg" fadein 2.0 loop
+            vio "Okay, I think I'm ready now, Nick..."
+            vio "It doesn't take very long, since you're {i}apparently{/i} so skilled at pleasing me."
+            vio "I'm wet now, so..."
+            vio "If you're ready, too..."
+            vio "Please put it in me."
+            vio "I want it."
+            ni "Well, in that case..."
+            ni "Roger that."
+            show c5 viosex 2
+            with dissolve
+            vio "Oh!"
+            ni "Crap, it just slid right in..."
+            ni "Are you even hornier than usual...?"
+            ni "Maybe you're enjoying this more than you thought."
+            vio "Ahh... I-I don't know..."
+            vio "But it feels amazing."
+            vio "And you're not one to talk..."
+            vio "You're even harder than you usually are."
+            show c5 viosex 3
+            with dissolve
+            ni "Well, you're not wrong about that."
+            ni "This is pretty damn hot, after all."
+            ni "I can't quite explain why... but doing it in front of other people makes the sex even better."
+            voi "Oh, yes!"
+            show c5 viosex 4
+            with dissolvelong
+            sop "Yes, right in my ass!"
+            sop "Keep going, Nolan."
+            sop "I'm a dirty little slut, and I want it."
+            nol "You're damn right you are."
+            show c5 viosex 3
+            with dissolve
+            ni "Well... err..."
+            ni "They're a lot more experienced with things than we are, hey..."
+            vio "......"
+            ni "Guess I should speed it up a bit, so we don't lose too badly."
+            show c5 viosex 5
+            with dissolve
+            sop "Ahh..."
+            sop "It sounds like you two are enjoying yourselves as well."
+            sop "If you want... why not come over here?"
+            sop "We can all do it next to each other."
+            ni "Hmm..."
+            show c5 viosex 3
+            with dissolve
+            ni "Are you okay with that?"
+            vio "Ah——!"
+            vio "U-Umm... s-sure, I guess."
+            "......"
+            show c5 viosex 6
+            with dissolvelong
+            vio "Wow..."
+            vio "I don't know if I've ever seen people have sex like this before."
+            vio "It doesn't hurt, with it in your butt like that?"
+            sop "Haha. No, not at all."
+            sop "Well, at first it took some time to get used to anal sex... but once you do, it's fun in its own little way."
+            vio "Hmm... I see..."
+            show c5 viosex 7
+            with dissolve
+            vio "......"
+            nol "Hey, if you're okay with it..."
+            nol "Why don't we spice things up a little bit?"
+            nol "Maybe Sophia could help the two of you out, or..."
+            nol "We could also swap partners for a few minutes."
+            nol "Not full sex, of course..."
+            nol "That's a bit too extreme for you right now, I'm sure."
+            nol "But maybe trading blowjobs wouldn't hurt?"
+            show c5 viosex 6
+            with dissolve
+            vio "Err..."
+            vio "Well..."
+            ni "It's up to you, [vio]."
+            ni "I'm okay with anything you're willing to do."
+            vio "......"
+            menu:
+                "[vio] asks Sophia to join them. [gr]\[VilotMFF\]":
+                    vio "Hmm..."
+                    vio "I don't know if I'm comfortable doing that to another man."
+                    vio "It's kind of... well..."
+                    vio "Nick would also be getting a blowjob from another girl, too, so..."
+                    vio "Maybe Sophia can join us?"
+                    vio "I guess I'd be fine with that..."
+                    "......"
+                    show c5 viosex mff 1
+                    with fadeholdlong
+                    vio "Mmmm..."
+                    ni "Damn, you're as amazing as always, [vio]."
+                    sop "Nice job... just like that, keep it up."
+                    sop "You enjoy your boyfriend's big dick, don't you?"
+                    vio "Mmm... I do..."
+                    sop "Make sure to show him you mean it, then."
+                    show c5 viosex mff 2
+                    with dissolve
+                    sop "Try using your tongue a little bit more."
+                    sop "Yes, just like that."
+                    sop "This way you can stimulate him without making him cum right away."
+                    sop "It's a form of teasing... or even edging, I guess you could say."
+                    vio "I-I see..."
+                    sop "Anyway..."
+                    sop "Your boyfriend seems ready, but you still need a bit of work before you can move on."
+                    sop "Why don't I try lubricating you a little bit?"
+                    sop "Come with me."
+                    vio "H-Huh?"
+                    "......"
+                    show c5 viosex mff 3
+                    with fadehold
+                    vio "A-Ahhh——!!"
+                    vio "Mmghh...!"
+                    ni "Wow..."
+                    ni "Never took you for the type to enjoy getting licked by another girl, [vio]."
+                    ni "This is pretty damn hot, especially from my perspective."
+                    show c5 viosex mff 4
+                    with dissolve
+                    sop "How is this, [vio]?"
+                    sop "I'm not too experienced with other girls, personally, since I'm more into men, but..."
+                    sop "When it's required, I know how to do the basics."
+                    sop "I'm a woman, too, so I know just the right spots to lick."
+                    sop "Like your clitoris right here..."
+                    show c5 viosex mff 5
+                    with dissolvelong
+                    vio "Ahhh?!"
+                    vio "{i}*slurping*{/i}"
+                    ni "Shit... she's really getting into it now."
+                    ni "This happens whenever we do some sixty-nine, but something about her movements is a little different."
+                    ni "You're enjoying it, aren't you, [vio]?"
+                    ni "You're a little slut, you know..."
+                    vio "!!"
+                    sop "...... Oh?"
+                    show c5 viosex mff 6
+                    with pixellate
+                    vio "Ohhh————!!!"
+                    vio "Something's coming out!"
+                    vio "Ah... o-oh my god..."
+                    sop "Well, it looks like your girlfriend is cumming, Nick."
+                    sop "Does she usually squirt like this?"
+                    ni "No... not at all..."
+                    ni "I've made her cum before, but nothing like this."
+                    ni "Damn... now that I've seen this..."
+                    show c5 viosex mff 7
+                    with dissolvelong
+                    ni "It's my turn to give you some pleasure."
+                    ni "You've been wanting my dick inside of you, haven't you?"
+                    ni "Well, you're in for a treat now."
+                    ni "I'm not going to be gentle after that little show you just gave me."
+                    vio "Hah... hah..."
+                    show c5 viosex mff 8
+                    with dissolve
+                    vio "Ahh—!! Nick!"
+                    vio "Yes!"
+                    vio "Please... please... pound me more."
+                    vio "Harder, rougher... I don't mind."
+                    sop "Hmm... you've already just came, but you're responding to me touching your clit all the same."
+                    sop "I guess your sexual desire hasn't gone anywhere yet."
+                    vio "Hah... hah..."
+                    sop "Well, now, mister boyfriend... why not give her to something a bit extra?"
+                    sop "Give her a nice little creampie."
+                    ni "......"
+                    ni "You've got it."
+                    "......"
+                    show c5 viosex mff 9
+                    with dissolvelong
+                    vio "Ah......"
+                    vio "Nick..."
+                    vio "It's so warm... and so deep inside of me."
+                    vio "You let out so much, that it feels like I'm bursting."
+                    ni "Shit..."
+                    ni "That felt amazing."
+                    ni "It's not often I cum that hard, either."
+                    sop "Nice job, [vio]. It sounds like your boyfriend had a great time."
+                    "......"
+                    $c5viomff = True
+                    jump c5hotelaf
+                "[vio] chooses to swap partners. [gr]\[VilotMMF\]":
+                    vio "I mean..."
+                    vio "If it's just a blowjob..."
+                    vio "Then I guess I wouldn't mind going that far."
+                    vio "I don't really enjoy Nick doing things with other girls, but... that's what this swinging thing is all about..."
+                    vio "Are you sure you don't mind me doing this with another guy, Nick?"
+                    ni "Nah... if anything, it would turn me on and make me want you even more than usual."
+                    ni "It's cool with me."
+                    vio "......"
+                    show c5 viosex mmf 1
+                    with fadeholdlong
+                    vio "Umm..."
+                    vio "Are we really doing this?"
+                    nol "That's up to you, [vio]."
+                    nol "Nobody is forcing you to do anything you don't want to."
+                    vio "I mean, I did agree to it..."
+                    vio "And it's not like there will be any sex involved."
+                    show c5 viosex mmf 2
+                    with dissolve
+                    vio "You really don't mind, Nick?"
+                    vio "I don't want you complaining to me later on that I made you jealous."
+                    ni "No, no, it's fine."
+                    ni "I want to see a different part of you."
+                    ni "And it's not like you're cheating on me, either, so I don't really have a reason to be jealous in the first place."
+                    ni "We're all here, together, so it's fine."
+                    vio "Well... if you say that much..."
+                    show c5 viosex mmf 1
+                    with dissolve
+                    vio "Then... I guess I can give it a try."
+                    vio "I don't know if I'll compare to your fiance, but I'll do it the same as I usually do with Nick."
+                    sop "Come over here, Nick."
+                    sop "I need to give you some service, too."
+                    sop "You can't just be watching your girlfriend the whole time and neglecting me. {i}*laughs*{/i}"
+                    vio "Here goes, I guess..."
+                    vio "......"
+                    show c5 viosex mmf 3
+                    with dissolvelong
+                    vio "Mmm?"
+                    vio "Mmmhmm..."
+                    nol "Wow... not bad, not bad at all."
+                    nol "You've trained your girlfriend well, haven't you?"
+                    ni "Yeah..."
+                    ni "I've taught her a lot, but she was pretty skilled from the start, too."
+                    show c5 viosex mmf 4
+                    with dissolve
+                    ni "Fuck... this is hot."
+                    ni "I've pictured things like this before, but for it to actually be happening..."
+                    ni "You're sexier than I could ever have imagined, [vio]."
+                    vio "Nggg..."
+                    nol "Damn... for a girl your age, you sure know how to use your mouth."
+                    nol "And your tongue, too... I'm impressed."
+                    show c5 viosex mmf 3
+                    with dissolve
+                    nol "Make sure to keep him occupied too, babe."
+                    sop "I know, I know, but he's barely even paying attention to me."
+                    sop "Look this way for a moment, Nick. I'll make you feel good, too."
+                    ni "Hmm...?"
+                    show c5 viosex mmf 5
+                    with dissolve
+                    ni "Oh, shit!"
+                    ni "I forgot we were supposed to do something, too."
+                    ni "I was too busy focusing on [vio] there."
+                    sop "Mgghh..."
+                    ni "You're pretty experienced, aren't you..."
+                    ni "Well, you're a swinger, so that's to be expected, I guess."
+                    nol "Come over here, [vio]."
+                    nol "I'm going to lay on the bed. That should make it easier."
+                    show c5 viosex mmf 6
+                    with dissolve
+                    nol "Nice, nice."
+                    nol "Good girl."
+                    nol "Yes, keep sucking just like that."
+                    nol "Show me what your boyfriend has taught you."
+                    nol "You don't want Sophia to make your boyfriend cum first, do you?"
+                    vio "Mmmm—!"
+                    ni "......"
+                    ni "Fuck..."
+                    ni "This is too hot..."
+                    ni "I'm sorry, Sophia, but I just can't hold back anymore..."
+                    ni "It's too tempting."
+                    show c5 viosex mmf 7
+                    with pixellate
+                    vio "Mmmmm—?!"
+                    vio "N-Nick?!"
+                    vio "I thought you were busy with her over there!"
+                    vio "Ahh—?!"
+                    ni "You think I could just sit there and watch, with you slurping away at his dick?"
+                    ni "And with your ass just sitting there, begging me to put it in..."
+                    ni "You wanted this, didn't you?"
+                    show c5 viosex mmf 8
+                    with dissolve
+                    ni "You're a dirty little girl, [vio]."
+                    ni "I needed to punish you a bit."
+                    vio "Ohh—!!"
+                    nol "Wow... she's really getting into it now."
+                    nol "She was doing a great job already, but her sucking is on a whole different level now."
+                    nol "I take it she hasn't had two dicks in her before?"
+                    ni "No, this is a first for her."
+                    ni "Which is surprising, considering how dirty she's sounding right now."
+                    vio "Ahh... Nick!"
+                    "......"
+                    show c5 viosex mmf 9
+                    with dissolvelong
+                    "{i}*slap*{/i}"
+                    ni "You like getting slapped on your ass, don't you?"
+                    ni "You were so nervous before, but look at you now, sucking another man's dick while your boyfriend is inside you."
+                    nol "This is one hell of a girl you have, y'know?"
+                    nol "Maybe you should treat her to more fun like this, since she's enjoying it so much."
+                    ni "I should... I really should."
+                    ni "......"
+                    ni "[vio], I think I'm about to cum."
+                    ni "There's no way I can stop... not with this scene in front of me."
+                    ni "Can I cum inside?"
+                    vio "Mmmm..."
+                    vio "F-Fine..."
+                    vio "Mmmmm—?!"
+                    show c5 viosex mmf 10
+                    with dissolvelong
+                    ni "Shit..."
+                    ni "I think that's all."
+                    ni "I must have emptied my entire balls with this, [vio]."
+                    nol "Crap... I couldn't hold it back, either."
+                    nol "Is she fine with finishing in her mouth?"
+                    ni "Yeah, that's how we always do it. She's even capable of swallowing, too."
+                    vio "Ahh... there's so much..."
+                    $c5viommf = True
+                    "......"
+                    jump c5hotelaf
+        "[vio] politely declines.":
+            label c5viosexother:
+            vio "It's a good plan, and I'm thankful you two are considering our feelings so much."
+            vio "But..."
+            vio "I feel like if we got started, it would be hard for things to stop there."
+            vio "And I still need some time to think things over."
+            vio "We only planned on talking for today, so I'm sorry... but I hope that's not too much of a problem."
+            show c5 viobar 14
+            with dissolve
+            sop "Oh, no... we understand. No worries."
+            sop "Maybe another time, after you've had some more time to think about it."
+            vio "Thank you... and sorry again."
+            nol "No, not a problem at all."
+            nol "What do you say we share a beer together, and then we can go our separate ways for tonight?"
+            stop music fadeout 2.0
+            nol "I always enjoy chatting with other couples."
+            vio "Sure."
+            ni "Alright, I'll go get us a few, then."
+            "......"
+            show c5 viosexalt 1
+            with fadeholdlong
+            play music "audio/blues.ogg" fadein 2.0 loop
+            "A couple hours later, back at home..."
+            vio "Ahh..."
+            ni "Mmmm..."
+            ni "God, your blowjobs are always amazing, [vio]."
+            vio "Nnn... and you're as skilled as ever with your tongue."
+            vio "{i}*slurps*{/i}"
+            show c5 viosexalt 2
+            with dissolve
+            ni "Damn, it sure didn't take you long to get wet, huh."
+            ni "Maybe chatting with those two got you hornier than expected?"
+            vio "Ahh... I-I don't know..."
+            vio "But I'm glad we can be together at home right now..."
+            show c5 viosexalt 1
+            with dissolve
+            ni "You seemed so nervous then, but look at you now, sucking dick like a pro."
+            "......"
+            ni "Hmm..."
+            ni "At this rate, you'll make me cum, and you're already dripping wet, so..."
+            ni "I think it's time to get started."
+            show c5 viosexalt 3
+            with dissolvelong
+            vio "Ohh——!"
+            vio "It feels so good!"
+            vio "This is even better than usual..."
+            ni "You like being bent over like a whore, don't ya?"
+            ni "{i}*slaps*{/i}"
+            ni "And you like being treated like one, too, right?"
+            vio "Ah... yes, I like it."
+            vio "Please... s-slap my ass more."
+            show c5 viosexalt 4
+            with dissolve
+            vio "Oh god!"
+            ni "I know you like this position."
+            ni "It's your favourite, huh? Well, one of them, anyway."
+            vio "Yeah, I like laying down like this..."
+            vio "......."
+            vio "You can move faster, or be a bit more rough, if you want."
+            show c5 viosexalt 5
+            with dissolve
+            ni "If you put it like that..."
+            vio "Ahh——?!"
+            vio "Wait, what's..."
+            ni "Your ass? Yeah, I know."
+            ni "Maybe it's about time I try putting it in there, seeing as we haven't done anal before..."
+            vio "W-Wait, this is too sudden..."
+            stop music fadeout 2.0
+            ni "Well, I'll let you off with fingering for now, but eventually..."
+            ni "Eventually, your other virginity is mine."
+            vio "Ah——!"
+            "......"
+            jump c5end
+    label c5hotelaf:
+    $ renpy.end_replay()
+    show c5 viohotelaf 1
+    with fadeholdlong
+    "......"
+    vio "We got pretty carried away, didn't we..."
+    ni "Yeah, that was definitely more than we were planning on."
+    ni "I enjoyed it, though, and don't regret it at all."
+    ni "That was easily some of the best sex we've ever had, if not {i}the{/i} best."
+    ni "What about you? What did you think?"
+    show c5 viohotelaf 2
+    with dissolve
+    vio "Well..."
+    vio "I feel pretty embarrassed about it now that we've finished."
+    if c5viomff:
+        vio "Having Sophia touch me... I've never had a girl do that to me before, so I don't know what to think about that yet."
+    if c5viommf:
+        vio "I never thought I'd do something like that with another guy, when I'm already in a relationship."
+        vio "And I definitely did {i}not{/i} imagine doing it with two guys at once..."
+    vio "I guess I enjoyed it, though... and I don't regret it, either..."
+    vio "...... You don't think I'm a slut now, do you?"
+    ni "No... well... {i}maybe{/i}."
+    ni "But you're {i}my{/i} slut, and that's completely fine in my book."
+    vio "I'm not sure if I should appreciate that phrasing of yours..."
+    vio "I don't belong to anyone, you know."
+    vio "I'm my own person and can make my own decisions."
+    show c5 viohotelaf 3
+    with dissolve
+    vio "But, anyway..."
+    vio "If this is what it's like..."
+    vio "Then... I might be willing to try something like this again."
+    vio "Not frequently, of course, but sometimes."
+    ni "I see... I'd enjoy that."
+    vio "For now, I need to shower, though."
+    vio "And then we should probably get dressed and head home."
+    vio "We have a place of our own to sleep at, after all."
+    ni "That's true."
+    stop music fadeout 2.0
+    vio "{i}(Well... what's done is done.){/i}"
+    vio "{i}(If this is what we're going to do now, I might as well get used to it.){/i}"
+    "......"
+
+    label c5end:
+    show c5 shop 1
+    with fadeholdlong
+    play music "<from 3.5>audio/isolation.mp3" fadein 0.5 loop
+    "The next day."
+    pov "It's sure hot today..."
+    pov "Usually things don't go over 30 degrees here in Vancouver, even during the summer, but it's one of those days."
+    pov "That's one of the reasons I've dressed so lightly today."
+    pov "The other reason... well, I think it's pretty easy to guess that one."
+    pov "I've already had a few guys whistling at me today."
+    if exh >=3:
+        pov "It's too bad I can't give them more to look at, but we're in public, after all."
+    show c5 shop 2
+    with dissolve
+    pov "......"
+    pov "That reminds me..."
+    pov "I'm pretty sure that was Josh I caught a few minutes ago."
+    show c5 shop 3
+    with pixellate
+    pov "I was walking past what seemed like an adult store, and saw someone there who seemed kind of familiar."
+    pov "It's hard to tell from far away, and without seeing their face... but it's almost impossible for me to mistake Josh or Connor."
+    pov "That's his favourite shirt, after all, and I've been around him so much that I can tell his body language apart from other people."
+    show c5 shop 4
+    with dissolve
+    pov "He seemed pretty nervous, though."
+    pov "Then again, he's only 19, like me, so I doubt he's used to places like this."
+    pov "And he tends to keep his perversions secret from other people... well, with the exception of me and Connor."
+    pov "I know just about everything that guy gets off on..."
+    show c5 shop 5
+    with dissolvelong
+    pov "There aren't too many adult stores around here, though, so I guess it's not {i}that{/i} much of a coincidence if I did just catch him red-handed."
+    pov "I wonder if those two are sexually frustrated."
+    show c5 shop 6
+    with dissolve
+    pov "I mean, to be fair... I haven't been around them as much lately due to work..."
+    pov "It's also been a while since I've last treated them to something."
+    stop music fadeout 2.5
+    pov "Maybe it's time to invite them over again, and have some fun."
+    pov "I'll see if I can schedule something for next week or so."
+    show c5 end 1
+    with fadeholdlong
+    play music "audio/cloudy.mp3" fadein 0.5 loop
+    "A little while later, after arriving home..."
+    pov "Whew, home already."
+    pov "And I'm already full, I think."
+    show c5 end 2
+    with dissolve
+    pov "I'll leave this on the table for now, and go put it in the fridge in a while, if I don't feel like finishing it."
+    pov "Normally I don't eat on the way home, but walking around town makes me hungrier than usual."
+    show c5 end 3
+    with dissolve
+    pov "{i}*yawn*{/i}"
+    pov "It's still not that late out yet."
+    pov "Not that I'd want to go outside again, though, so all there is to do is chill for a while."
+    show c5 end 4
+    with dissolvelong
+    pov "There's nothing I really feel like watching on Netflix right now."
+    pov "I don't really feel like playing games, either."
+    pov "That little incident with Josh is still distracting me, for some reason."
+    pov "Hmm..."
+    menu:
+        "Send them perverted pictures. [gr]\[Exhibition +1\]":
+            label galleryScene12:
+            pov "You know what..."
+            show c5 end 5
+            with dissolve
+            pov "I don't want to wait until the next time they come over, before I can have some fun."
+            pov "And if they're so horny lately that they'd go to a porn shop by themselves..."
+            pov "I'll give them some {i}real{/i} material to use..."
+            pov "That'll be much better than some bimbo in a porn video."
+            show c5 end 6
+            with fadeholdlong
+            pov "Is it really okay to give them a picture of my boobs like this...?"
+            pov "Well..."
+            if c3boytease:
+                pov "It's not like this is the only time they've seen my boobs before."
+                pov "I {i}did{/i} show them directly a few weeks back."
+                pov "Kinda sucks that's all that happened, but maybe something else will happen next time?"
+            else:
+                pov "It's not like titty pictures are {i}that{/i} extreme, in the current day and age."
+                pov "A lot of girls have fansites and things like that, where they upload pictures like this."
+                pov "Plus, they're my friends, so I know they won't share it with random people or anything."
+            show c5 end 7
+            with dissolve
+            pov "I'll zoom in a bit more..."
+            pov "Okay, this should be a good one."
+            play sound "audio/effects/camera1.mp3"
+            "{i}*click*{/i}"
+            pov "I know they'll like this."
+            show c5 end 6
+            with dissolve
+            pov "Now to send it to them..."
+            pov "I'll put it in our group chat, rather than sending individually, so they don't think I'm singling one of them out."
+            pov "I don't want any fighting or jealousy going on, after all."
+            pov "I like them both equally."
+            window hide
+            show c5-1 phone with dissolvelong
+            with Pause(1.0)
+            show c5-2 phone with dissolve
+            with Pause(2.0)
+            show c5-3 phone with dissolve
+            with Pause(2.0)
+            show c5-4 phone with dissolve
+            with Pause(2.0)
+            window show
+            pov "Guess they enjoyed that... {i}*giggles*{/i}"
+            pov "I should get dressed now."
+            scene c5 end 8
+            with fadehold
+            pov "No doubt they'll bring this up the next time we meet."
+            pov "Not that I really mind, though... they're always talking about something perverted, anyway."
+            pov "And if their perverted conversations are about me instead of some pornstar or anime chick... that's a positive in my book."
+            pov "Hmm..."
+            pov "It's almost like I'm their mom or something."
+            pov "Only, instead of raising them, I'm taking care of their sexual desires for them."
+            pov "That's kind of hot, isn't it...?"
+            show c5 end 9
+            with dissolvelong
+            "......"
+            pov "Oh, that's right."
+            pov "That cosplay outfit I ordered, arrived this morning."
+            pov "I didn't get a chance to try it on yet, since I went outside first."
+            pov "I should go over to my room and make sure it fits."
+            show c5 end 10
+            with fadeholdlong
+            pov "This fits much better than I expected..."
+            pov "I'm not much of a cosplayer, but I thought I'd try something new."
+            pov "Plus, I'm a fan of the character, and Connor and Josh were talking about how similar me and her look."
+            pov "Maybe they have a point?"
+            pov "I don't know if I'm quite {i}that{/i} sexy, though..."
+            show c5 end 11
+            with dissolve
+            pov "Honestly... after sending those pictures to them..."
+            pov "I'm starting to wonder if I should try things like this, on a more frequent basis."
+            pov "I've heard camming and livestreaming are both pretty popular, and that girls can get some good donations from fans."
+            pov "...... Camming, huh..."
+            pov "Maybe I'll try that out at some point?"
+            pov "I guess I {i}could{/i} be pretty popular, if I really gave it a try."
+            pov "...... Well, that's a thought for another day..."
+            pov "I should go to the bathroom and see how this outfit looks first."
+            $exh+=1
+            $c5pic = True
+            "......"
+        "Hold the thought for now. [gr]\[Innocent +1\]":
+            show c5 end 5
+            with dissolve
+            pov "I don't want them looking at pornstars and other sluts like that..."
+            pov "Especially when there's a cute girl who's so close with them... it almost feels like I'm being neglected."
+            pov "But I'm just not in the mood right now."
+            pov "And since I'll be seeing them again some time next week, I'll have a chance to do something then."
+            if les >=2:
+                pov "Hmm..."
+                pov "I'm kind of curious what would happen if I sent the picture to [fr] instead, but it would be weird to do that suddenly."
+                pov "Plus, she might have someone looking over her shoulder, and I don't want to embarrass her."
+                pov "Nah... I'll talk to her in person again some time soon."
+            "......"
+            show c5 end 8
+            with fadehold
+            pov "Man, there's nothing but negativity on the news these days..."
+            pov "I get that the world isn't in the best place right now, but any time I flip to a news program I get bummed out..."
+            pov "I'll see if there's something else I can watch for a little bit instead."
+            show c5 end 9
+            with dissolvelong
+            "......"
+            pov "Oh, that's right."
+            pov "That cosplay outfit I ordered arrived this morning."
+            pov "I didn't get a chance to try it on yet, since I went outside first."
+            pov "I should go over to my room and make sure it fits."
+            show c5 end 10
+            with fadeholdlong
+            pov "This fits much better than I expected..."
+            pov "I'm not much of a cosplayer, but I thought I'd try something new."
+            pov "Plus, I'm a fan of the character, and Connor and Josh were talking about how similar me and her look."
+            pov "Maybe they have a point?"
+            pov "I don't know if I'm quite {i}that{/i} sexy, though..."
+            show c5 end 11
+            with dissolve
+            pov "Honestly... since I was considering sending perverted pictures earlier..."
+            pov "I'm starting to wonder if I should actually try things like that, on a more frequent basis."
+            pov "I've heard camming and livestreaming are both pretty popular, and that girls can get some good donations from fans."
+            pov "...... Hmm... camming, huh..."
+            pov "Maybe I'll try that out at some point?"
+            pov "I guess I {i}could{/i} be pretty popular, if I really gave it a try."
+            pov "...... Well, that's a thought for another day..."
+            pov "I should go to the bathroom and see how this outfit looks first."
+            $inn+=1
+            "......"
+    $ renpy.end_replay()
+    show intro bg 1
+    with wiperight
+    "......"
+    "{b}Chapter 5: Complete{/b}"
+
+    ####################### END OF CHAPTER 5####################################
+
+    ####################### CHAPTER 6 ##########################################
+    $ chaptercount +=1
+
     ion "Hello there!"
     ion "I hope you've enjoyed your time thus far."
-    ion "This marks the end of {b}Casual Desires{/b}, version 0.3."
+    ion "This marks the end of {b}Casual Desires{/b}, version 0.4."
     ion "If you're enjoying your time, and would like to support the development of {b}Casual Desires{/b}, any sort of contribution on my Patreon would be greatly appreciated!"
     ion "You can find my Patreon {a=https://www.patreon.com/ionDivvy}here{/a}."
     ion "Finally, if you've forgotten to save, I would recommend doing so in the previous scene, and using said save for the next release."

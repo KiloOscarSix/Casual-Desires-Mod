@@ -23,7 +23,7 @@ screen cheatMenu():
 
     default shownCheatMenu = None
 
-    add "/oscarAdditions/images/cheatMenuBackground.png"
+    add "/modAdditions/images/cheatMenuBackground.png"
     fixed:
         xysize (1877, 99)
         pos (18, 13)
@@ -37,20 +37,14 @@ screen cheatMenu():
                     action [Function(renpy.retain_after_load), SetScreenVariable("shownCheatMenu", value=i)]
                     text_style "modTextButtonHeader"
 
-    textbutton "Reset Gallery Names":
-        action [Function(resetGalleryName), ui.callsinnewcontext("resetGalleryNameConfirmed")]
-        xcenter 0.5
-        ypos 650
-        text_style "modTextButtonBody"
-
     for i in cheatMenuList:
         if shownCheatMenu == i:
             use cheatMenuValues(cheatMenuChar=i)
 
     imagebutton:
         action [Hide("cheatMenu"), Hide("cheatMenuValues"), SetVariable("quick_menu", True)]
-        idle "/oscarAdditions/images/cheatMenuBackButton.png"
-        hover im.MatrixColor("/oscarAdditions/images/cheatMenuBackButton.png", im.matrix.brightness(0.2))
+        idle "/modAdditions/images/cheatMenuBackButton.png"
+        hover im.MatrixColor("/modAdditions/images/cheatMenuBackButton.png", im.matrix.brightness(0.2))
         pos (1666, 50)
 
 screen cheatMenuValues(cheatMenuChar):

@@ -17,7 +17,7 @@ style modTextButtonHeader:
     selected_color "#ffcb4f"
 
 style modTextButtonBody:
-    size 50
+    size 32
     idle_color "#f0f0f0"
     hover_color "#ffcb4f"
     selected_color "#ffcb4f"
