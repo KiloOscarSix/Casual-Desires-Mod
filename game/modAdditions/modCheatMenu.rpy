@@ -13,72 +13,101 @@ init python:
     ["Vio P", "viop", 20],
     ],
     }
+init python:
+    cheatItems = []
+    cheatCatagorys = []
+
+    class CheatItem:
+        def __init__(self, catagory, name, variable, kind="Slider", minValue=0, maxValue=0, trueValue=True, falseValue=False):
+            self.catagory = catagory
+            self.name = name
+            self.variable = variable
+            if kind == "Slider":
+                self.minValue = minValue
+                self.maxValue = maxValue
+            elif kind == "Button":
+                self.trueValue = trueValue
+                self.falseValue = falseValue
+            else:
+                raise Exception("Unsupported Cheat Type")
+            self.kind = kind
+
+            cheatItems.append(self)
+
+    ## CHEAT ITEMS HERE
+    CheatItem("Rita", "Preversion", "perv", maxValue=20)
+    CheatItem("Rita", "Sexual Experiances", "sexe", maxValue=20)
+    CheatItem("Rita", "Exhibition", "exh", maxValue=20)
+    CheatItem("Rita", "Model Seduction", "model_seduction", maxValue=20)
+    CheatItem("Rita", "Lesbian", "les", maxValue=20)
+    CheatItem("Rita", "Innocent", "inn", maxValue=20)
+
+    CheatItem("Violet", "Vio Corruption", "vioc", maxValue=20)
+    CheatItem("Violet", "Vio P", "viop", maxValue=20)
+
+
+    for cheatItem in cheatItems:
+        if cheatItem.catagory not in cheatCatagorys:
+            cheatCatagorys.append(cheatItem.catagory)
 
 screen cheatMenu():
     modal True
     zorder 200
 
-    python:
-        cheatMenuList = ["Rita", "Violet"]
-
-    default shownCheatMenu = None
+    default shownCheatMenu = cheatItems[0] or None
 
     add "/modAdditions/images/cheatMenuBackground.png"
+
     fixed:
-        xysize (1877, 99)
-        pos (18, 13)
+        xysize (1536, 99)
+        pos (85, 13)
 
         hbox:
             xcenter 0.5
             ycenter 0.5
             spacing 100
-            for i in cheatMenuList:
-                textbutton i:
-                    action [Function(renpy.retain_after_load), SetScreenVariable("shownCheatMenu", value=i)]
+            for cheatCatagory in cheatCatagorys:
+                textbutton cheatCatagory:
+                    action [Function(renpy.retain_after_load), SetScreenVariable("shownCheatMenu", cheatCatagory)]
                     text_style "modTextButtonHeader"
 
-    for i in cheatMenuList:
-        if shownCheatMenu == i:
-            use cheatMenuValues(cheatMenuChar=i)
+    for cheatCatagory in cheatCatagorys:
+        if shownCheatMenu == cheatCatagory:
+            use cheatMenuValues(cheatMenuChar=cheatCatagory)
 
     imagebutton:
-        action [Hide("cheatMenu"), Hide("cheatMenuValues"), SetVariable("quick_menu", True)]
+        action Hide("cheatMenu"), Hide("cheatMenuValues"), SetVariable("quick_menu", True)
         idle "/modAdditions/images/cheatMenuBackButton.png"
         hover im.MatrixColor("/modAdditions/images/cheatMenuBackButton.png", im.matrix.brightness(0.2))
         pos (1666, 50)
 
-screen cheatMenuValues(cheatMenuChar):
+screen cheatMenuValues(cheatMenuChar="General"):
     tag cheatmenu
-    zorder 199
 
     vbox:
-        pos (100, 200)
-        spacing 50
-
+        pos (103, 258)
+        spacing 100
         vpgrid:
             cols 4
-            spacing 50
-            for x in cheatMenuDict[cheatMenuChar]:
+            spacing 100
+            for cheatItem in cheatItems:
+                if cheatItem.catagory == cheatMenuChar and cheatItem.kind == "Slider":
+                        vbox:
+                            spacing 20
+                            text "[cheatItem.name]" style "modTextBody2"
+                            fixed:
+                                xysize (352, 42)
 
-                vbox:
-                    spacing 20
-                    text "[x[0]]:" style "modTextBody2"
-                    fixed:
-                        xysize (352, 42)
-
-                        bar value VariableValue(x[1], x[2]):
-                            left_bar Frame("gui/bar/left.png", 10, 0)
-                            right_bar Frame("gui/bar/right.png", 10, 0)
-                        text "{:}".format(getattr(store, x[1])) xcenter 0.5 ycenter 0.5
-
-        if cheatMenuChar == "Rita":
-            frame:
-                xsize 300
-                padding (20, 20)
-                vpgrid:
-                    cols 4
-                    spacing 50
-                    style_prefix "check"
-
-                    textbutton "ModelMotive":
-                        action ToggleVariable("model_motive", true_value=1, false_value=0)
+                                bar value VariableValue(cheatItem.variable, cheatItem.maxValue-cheatItem.minValue, offset=cheatItem.minValue):
+                                    left_bar Frame("gui/bar/left.png", 10, 0)
+                                    right_bar Frame("gui/bar/right.png", 10, 0)
+                                text "{:}".format(getattr(store, cheatItem.variable)) align(0.5, 0.5)
+        vpgrid:
+            cols 4
+            spacing 100
+            for cheatItem in cheatItems:
+                if cheatItem.catagory == cheatMenuChar and cheatItem.kind == "Button":
+                    vbox:
+                        style_prefix "check"
+                        textbutton "[cheatItem.name]":
+                            action ToggleVariable(cheatItem.variable, true_value=cheatItem.trueValue, false_value=cheatItem.falseValue)

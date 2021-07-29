@@ -1,5 +1,27 @@
-init python:
-    gr = "{color=#0f0}"
+define BoySeduction = "{color=#0f0}[Boy Seduction]"
+define Peak = "{color=#0f0}[Peak]"
+define VioStranger = "{color=#0f0}[Violet Stranger]"
+define VioSharing = "{color=#0f0}[Violet Sharing]"
+define KissEnjoy = "{color=#0f0}[Kiss Enjoy]"
+define Downtown = "{color=#0f0}[Downtown]"
+define Pool = "{color=#0f0}[Pool]"
+define PizzaBoy = "{color=#0f0}[Pizza Boy]"
+define PizzaGirl = "{color=#0f0}[Pizza Girl]"
+define ParkGirl = "{color=#0f0}[ParkGirl]"
+define PoolGuy = "{color=#0f0}[PoolGuy]"
+define PoolGirl = "{color=#0f0}[PoolGirl]"
+define Sex = "{color=#0f0}[Sex]"
+define LunaSex = "{color=#0f0}[Luna Sex]"
+define JoshConnorSex = "{color=#0f0}[Josh & Connor Sex]"
+
+define VioletMFF = "{color=#0f0}[Violet MFF]"
+define VioletMMF = "{color=#0f0}[Violet MMF]"
+define VioletLes = "{color=#0f0}[Violet Les]"
+define VioletSex = "{color=#0f0}[Violet Sex]"
+
+define C2End1 = "{color=#0f0}[C2End1]"
+define C2End2 = "{color=#0f0}[C2End2]"
+define C2End3 = "{color=#0f0}[C2End3]"
 
 define mod = Character("OscarSix", color="#0f0")
 
@@ -9,7 +31,7 @@ screen modOptions():
     add "#23272a"
 
     vbox:
-        xcenter 0.5
+        xalign 0.5
         ypos 33
         spacing 33
 

@@ -1,5 +1,5 @@
 style modTextHeader is text:
-    size 100
+    size 72
     color "#fff"
 
 style modTextBody is text:
@@ -19,5 +19,11 @@ style modTextButtonHeader:
 style modTextButtonBody:
     size 32
     idle_color "#f0f0f0"
+    hover_color "#ffcb4f"
+    selected_color "#ffcb4f"
+
+style statsUpdateTextbuttonHeader:
+    size 50
+    idle_color "#FFC0CB"
     hover_color "#ffcb4f"
     selected_color "#ffcb4f"
